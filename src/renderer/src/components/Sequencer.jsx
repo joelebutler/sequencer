@@ -15,18 +15,9 @@ export function Sequencer() {
       </div>
       <div id="controls" className="flex flex-row h-[25vh]">
         <div id="active-controls" className="flex-grow flex flex-row justify-around items-center">
-          <div className="bg-blue-400 control-knob-zone">
             <GainKnob />
-            <label>Gain</label>
-          </div>
-          <div className="bg-blue-400 control-knob-zone">
             <PitchKnob />
-            <label>Pitch</label>
-          </div>
-          <div className="bg-blue-400 control-knob-zone">
             <TimingKnob />
-            <label>Timing</label>
-          </div>
           <div className="bg-red-500 w-[300px] h-[200px]">
             <div className="bg-blue-800 w-full h-3/4">
               <label>Waveform</label>
