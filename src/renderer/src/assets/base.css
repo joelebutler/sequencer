@@ -25,6 +25,12 @@ body {
   @apply mr-[5px];
   @apply ml-[5px];
 }
+.inst-button:hover,
+.beat-button:hover {
+  @apply transition;
+  @apply duration-100;
+  @apply scale-110;
+}
 .beat-row {
   @apply max-w-full;
   @apply justify-between;
