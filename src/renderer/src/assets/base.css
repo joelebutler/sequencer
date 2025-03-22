@@ -36,6 +36,12 @@ body {
   @apply justify-between;
   @apply w-full;
 }
+.beat-enabled {
+  @apply bg-orange-500;
+}
+.active-beat-col {
+  @apply bg-green-800;
+}
 .beat-pos {
   @apply h-fit;
   @apply max-w-full;

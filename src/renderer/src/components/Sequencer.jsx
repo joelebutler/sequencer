@@ -8,10 +8,12 @@ import Visualizer from './Visualizer.jsx'
 import { FaCircle } from 'react-icons/fa'
 import { FaCirclePlay, FaCircleUp, FaCircleStop, FaCirclePause } from 'react-icons/fa6'
 import BeatRow from './BeatRow.jsx'
+import Metronome from './Metronome.jsx'
 
 export function Sequencer() {
   return (
     <div id="main-content" className="flex flex-col h-full content-stretch">
+      <Metronome></Metronome>
       <div className="flex flex-row justify-between p-[20px]">
         <h2>Michaeland TR-909</h2>
         <h2>A sequencer by Joel Butler & Michael Vitale</h2>
@@ -83,12 +85,12 @@ export function Sequencer() {
               <span>15</span>
               <span>16</span>
             </div>
-            <BeatRow />
-            <BeatRow />
-            <BeatRow />
-            <BeatRow />
-            <BeatRow />
-            <BeatRow />
+            <BeatRow soundID="1" />
+            <BeatRow soundID="2" />
+            <BeatRow soundID="3" />
+            <BeatRow soundID="4" />
+            <BeatRow soundID="5" />
+            <BeatRow soundID="6" />
           </div>
         </div>
       </div>
