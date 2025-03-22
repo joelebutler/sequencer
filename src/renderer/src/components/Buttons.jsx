@@ -40,6 +40,8 @@ function Buttons() {
   const soundEntries = Object.entries(sounds);
   return (
     <div className="buttons">
+      <Button name="FX" />
+      <Button name="FX2" />
       {soundEntries.map(([path, sound]) => {
         const soundUrl = sound.default; // Extract the actual audio file
         const soundName = path.replace(/^.*[\\/]/, '').replace(/\.[^/.]+$/, '')
