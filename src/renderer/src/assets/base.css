@@ -1,67 +1,61 @@
-:root {
-  --ev-c-white: #ffffff;
-  --ev-c-white-soft: #f8f8f8;
-  --ev-c-white-mute: #f2f2f2;
-
-  --ev-c-black: #1b1b1f;
-  --ev-c-black-soft: #222222;
-  --ev-c-black-mute: #282828;
-
-  --ev-c-gray-1: #515c67;
-  --ev-c-gray-2: #414853;
-  --ev-c-gray-3: #32363f;
-
-  --ev-c-text-1: rgba(255, 255, 245, 0.86);
-  --ev-c-text-2: rgba(235, 235, 245, 0.6);
-  --ev-c-text-3: rgba(235, 235, 245, 0.38);
-
-  --ev-button-alt-border: transparent;
-  --ev-button-alt-text: var(--ev-c-text-1);
-  --ev-button-alt-bg: var(--ev-c-gray-3);
-  --ev-button-alt-hover-border: transparent;
-  --ev-button-alt-hover-text: var(--ev-c-text-1);
-  --ev-button-alt-hover-bg: var(--ev-c-gray-2);
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@font-face {
+  font-family: 'Alte-Din';
+  src: url('./alte-din-1451-mittelschrift.regular.ttf');
 }
-
-:root {
-  --color-background: var(--ev-c-black);
-  --color-background-soft: var(--ev-c-black-soft);
-  --color-background-mute: var(--ev-c-black-mute);
-
-  --color-text: var(--ev-c-text-1);
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  font-weight: normal;
-}
-
-ul {
-  list-style: none;
-}
-
+html,
 body {
-  min-height: 100vh;
-  color: var(--color-text);
-  background: var(--color-background);
-  line-height: 1.6;
-  font-family:
-    Inter,
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    Oxygen,
-    Ubuntu,
-    Cantarell,
-    'Fira Sans',
-    'Droid Sans',
-    'Helvetica Neue',
-    sans-serif;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  padding: 0;
+  color: white;
+  font-family: 'Alte-Din', sans-serif;
+}
+.inst-button {
+  @apply bg-green-500;
+  @apply w-4/5;
+  @apply h-[75px];
+  @apply border-black;
+  @apply border-2;
+  @apply rounded-lg;
+}
+.beat-button {
+  @apply min-w-[75px];
+  @apply h-[75px];
+  @apply bg-green-800;
+  @apply mr-[5px];
+  @apply ml-[5px];
+  @apply border-collapse;
+}
+.beat-row {
+  @apply max-w-full;
+}
+.beat-pos {
+  @apply h-fit;
+  @apply max-w-full;
+}
+.beat-pos span {
+  @apply inline-block;
+  @apply text-center;
+  @apply text-2xl;
+  @apply font-bold;
+  @apply min-w-[75px];
+  @apply bg-green-800;
+  @apply m-[5px];
+  @apply border-collapse;
+}
+.control-knob-zone {
+  @apply h-[125px];
+  @apply w-[100px];
+  @apply text-center;
+  @apply font-bold;
+}
+.waveform-control {
+  @apply bg-yellow-200;
+  @apply h-10;
+  @apply w-10;
+  @apply m-1;
+  @apply text-center;
+  @apply font-bold;
 }
