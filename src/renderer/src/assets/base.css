@@ -6,6 +6,13 @@ body {
   margin: 0;
   padding: 0;
   color: white;
-  font-family: 'DIN 1451';
-  overflow-x: hidden;
+  font-family: 'DIN 1451', sans-serif;
+}
+.inst-button {
+  @apply bg-green-500;
+  @apply w-4/5;
+  @apply h-[100px];
+  @apply border-black;
+  @apply border-2;
+  @apply rounded-lg;
 }
