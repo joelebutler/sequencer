@@ -57,7 +57,7 @@ function Buttons() {
       <Button name="hi" />
       <Button name="kick" />
       <Button name="snare" />
-    </div>
+    </>
   )
 }
 
