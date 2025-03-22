@@ -6,6 +6,11 @@ function Button({ name, sound }) {
 
   const handleClick = () => {
     togglePlay(!playing);
+    if (playing === false) {
+      setActive('')
+    } else {
+      setActive('active-inst')
+    }
   }
 
   const playSound = () => {
@@ -24,7 +29,7 @@ function Button({ name, sound }) {
   }, [playing]);
 
   return (
-    <button className="sound-btn" onClick={handleClick}>
+    <button className="inst-button" onClick={handleClick} id={playing ? 'active-inst' : null}>
       {name}
     </button>
   )

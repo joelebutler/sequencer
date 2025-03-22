@@ -1,3 +1,5 @@
+import Buttons from './Buttons.jsx'
+
 export function Sequencer() {
   return (
     <div id="main-content" className="flex flex-col h-full content-stretch">
@@ -53,12 +55,7 @@ export function Sequencer() {
           <div className="beat-pos flex flex-row grow-0">
             <span>1</span>
           </div>
-          <button className="inst-button">FX</button>
-          <button className="inst-button">Bell</button>
-          <button className="inst-button">Hat</button>
-          <button className="inst-button">Snare</button>
-          <button className="inst-button">Kick</button>
-          <button className="inst-button">Kick</button>
+          <Buttons/>
         </div>
         <div
           id="beat-button-container"

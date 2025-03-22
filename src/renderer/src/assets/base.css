@@ -59,3 +59,6 @@ body {
   @apply text-center;
   @apply font-bold;
 }
+#active-inst {
+  @apply bg-green-800;
+}
