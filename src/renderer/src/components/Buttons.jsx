@@ -6,7 +6,7 @@ import kick from '../assets/sounds/kick.wav'
 import snare from '../assets/sounds/snare.wav'
 
 function Button({ soundID, defaultSound }) {
-  const [playing, togglePlay] = useState(false)
+  const [enabled, toggleEnabled] = useState(false)
   let sound = null
   if (defaultSound === 'cowbell') {
     sound = new Audio(cowbell)
@@ -16,30 +16,28 @@ function Button({ soundID, defaultSound }) {
     sound = new Audio(kick)
   } else if (defaultSound === 'snare') {
     sound = new Audio(snare)
+  } else {
+    sound = new Audio()
   }
+  sound.preload = 'auto'
+  sound.loop = 'false'
+  sound.preservesPitch = 'false'
 
+  const playOneShot = () => {
+    sound.currentTime = 0
+    sound.loop = false
+    sound.play()
+  }
   const handleClick = () => {
-    togglePlay(!playing)
+    toggleEnabled(!enabled)
+    playOneShot()
   }
-
-  useEffect(() => {
-    const playSound = () => {
-      sound.play()
-    }
-    let interval
-    if (playing) {
-      interval = setInterval(playSound, 500)
-    } else {
-      clearInterval(interval)
-    }
-    return () => clearInterval(interval)
-  }, [playing, sound])
 
   return (
     <button
-      className={`inst-button ${playing ? 'active-inst' : null}`}
+      className={`inst-button ${enabled ? 'active-inst' : ''}`}
       onClick={handleClick}
-      id={'sound-' - soundID}
+      id={'sound-' + soundID}
     >
       {defaultSound}
     </button>

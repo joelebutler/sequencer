@@ -92,3 +92,6 @@ body {
 .active-inst {
   @apply bg-orange-500;
 }
+.active-inst:hover {
+  @apply bg-orange-600;
+}
