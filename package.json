@@ -22,6 +22,7 @@
     "@electron-toolkit/utils": "^4.0.0",
     "rc-knob": "^1.0.1",
     "react-audio-visualize": "^1.2.0",
+    "react-icons": "^5.5.0",
     "react-knob-headless": "^0.3.0",
     "react-rotary-knob": "^3.0.3"
   },

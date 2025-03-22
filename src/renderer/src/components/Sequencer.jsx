@@ -5,6 +5,8 @@ import PitchKnob from './PitchKnob.jsx'
 import TimingKnob from './TimingKnob.jsx'
 import GlobalKnob from './GlobalKnob.jsx'
 import Visualizer from './Visualizer.jsx'
+import { FaCircle } from 'react-icons/fa'
+import { FaCirclePlay, FaCircleUp, FaCircleStop, FaCirclePause } from 'react-icons/fa6'
 import BeatRow from './BeatRow.jsx'
 
 export function Sequencer() {
@@ -25,11 +27,21 @@ export function Sequencer() {
               <Visualizer />
             </div>
             <div className="flex flex-row justify-between">
-              <button className="waveform-control">O</button>
-              <button className="waveform-control">Upl</button>
-              <button className="waveform-control">Upl</button>
-              <button className="waveform-control">Upl</button>
-              <button className="waveform-control">Upl</button>
+              <button className="waveform-control record-btn">
+                <FaCircle />
+              </button>
+              <button className="waveform-control pause-btn">
+                <FaCirclePause />
+              </button>
+              <button className="waveform-control play-btn">
+                <FaCirclePlay />
+              </button>
+              <button className="waveform-control stop-btn">
+                <FaCircleStop />
+              </button>
+              <button className="waveform-control upload-btn">
+                <FaCircleUp />
+              </button>
             </div>
           </div>
         </div>

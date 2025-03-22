@@ -62,6 +62,23 @@ body {
   @apply m-1;
   @apply text-center;
   @apply font-bold;
+  @apply flex;
+  @apply flex-row;
+  @apply items-center;
+  @apply justify-center;
+  @apply text-2xl;
+}
+.record-btn {
+  @apply text-red-600;
+}
+.pause-btn {
+  @apply text-blue-700;
+}
+.play-btn {
+  @apply text-teal-600;
+}
+.upload-btn {
+  @apply text-indigo-600;
 }
 #active-inst {
   @apply bg-green-800;
