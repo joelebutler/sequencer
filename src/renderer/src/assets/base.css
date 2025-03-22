@@ -1,6 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@font-face {
+  font-family: 'Alte-Din';
+  src: url("./alte-din-1451-mittelschrift.regular.ttf");
+}
 html,
 body {
   margin: 0;
