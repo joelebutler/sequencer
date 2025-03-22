@@ -20,11 +20,11 @@ export function Sequencer() {
             <label>Gain</label>
           </div>
           <div className="bg-blue-400 control-knob-zone">
-            <div className="bg-green-500 h-[100px]"></div>
+            <PitchKnob />
             <label>Pitch</label>
           </div>
           <div className="bg-blue-400 control-knob-zone">
-            <div className="bg-green-500 h-[100px]"></div>
+            <TimingKnob />
             <label>Timing</label>
           </div>
           <div className="bg-red-500 w-[300px] h-[200px]">
