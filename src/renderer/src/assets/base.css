@@ -86,6 +86,6 @@ body {
 .upload-btn {
   @apply text-indigo-600;
 }
-#active-inst {
-  @apply bg-green-800;
+.active-inst {
+  @apply bg-orange-500;
 }

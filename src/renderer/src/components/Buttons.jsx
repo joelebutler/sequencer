@@ -5,16 +5,16 @@ import hi from '../assets/sounds/hi-hat.wav'
 import kick from '../assets/sounds/kick.wav'
 import snare from '../assets/sounds/snare.wav'
 
-function Button({ name }) {
+function Button({ soundID, defaultSound }) {
   const [playing, togglePlay] = useState(false)
   let sound = null
-  if (name === 'cowbell') {
+  if (defaultSound === 'cowbell') {
     sound = new Audio(cowbell)
-  } else if (name === 'hi') {
+  } else if (defaultSound === 'hi') {
     sound = new Audio(hi)
-  } else if (name === 'kick') {
+  } else if (defaultSound === 'kick') {
     sound = new Audio(kick)
-  } else if (name === 'snare') {
+  } else if (defaultSound === 'snare') {
     sound = new Audio(snare)
   }
 
@@ -36,8 +36,12 @@ function Button({ name }) {
   }, [playing, sound])
 
   return (
-    <button className="inst-button" onClick={handleClick} id={playing ? 'active-inst' : null}>
-      {name}
+    <button
+      className={`inst-button ${playing ? 'active-inst' : null}`}
+      onClick={handleClick}
+      id={'sound-' - soundID}
+    >
+      {defaultSound}
     </button>
   )
 }
@@ -45,12 +49,12 @@ function Button({ name }) {
 function Buttons() {
   return (
     <>
-      <Button name="FX" />
-      <Button name="FX2" />
-      <Button name="cowbell" />
-      <Button name="hi" />
-      <Button name="kick" />
-      <Button name="snare" />
+      <Button soundID="1" defaultSound="FX" />
+      <Button soundID="2" defaultSound="FX2" />
+      <Button soundID="3" defaultSound="cowbell" />
+      <Button soundID="4" defaultSound="hi" />
+      <Button soundID="5" defaultSound="kick" />
+      <Button soundID="6" defaultSound="snare" />
     </>
   )
 }
