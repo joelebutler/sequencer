@@ -2,11 +2,47 @@ export function Sequencer() {
   return (
     <div id="main-content" className="flex flex-col h-full content-stretch">
       <div id="controls" className="flex flex-row h-[25vh]">
-        <div className="bg-slate-950 flex-grow">
-          <h1>Active:</h1>
+        <div
+          id="active-controls"
+          className="bg-slate-500 flex-grow flex flex-row justify-around items-center"
+        >
+          <div className="bg-blue-400 control-knob-zone">
+            <div className="bg-green-500 h-[100px]"></div>
+            <label>Gain</label>
+          </div>
+          <div className="bg-blue-400 control-knob-zone">
+            <div className="bg-green-500 h-[100px]"></div>
+            <label>Pitch</label>
+          </div>
+          <div className="bg-blue-400 control-knob-zone">
+            <div className="bg-green-500 h-[100px]"></div>
+            <label>Timing</label>
+          </div>
+          <div className="bg-red-500 w-[300px] h-[200px]">
+            <div className="bg-blue-800 w-full h-3/4">
+              <label>Waveform</label>
+            </div>
+            <div className="flex flex-row justify-between">
+              <button className="waveform-control">O</button>
+              <button className="waveform-control">Upl</button>
+              <button className="waveform-control">Upl</button>
+              <button className="waveform-control">Upl</button>
+              <button className="waveform-control">Upl</button>
+            </div>
+          </div>
         </div>
-        <div className=" bg-yellow-950 w-[30vw]">
-          <h1>Global:</h1>
+        <div
+          id="global-controls"
+          className=" bg-yellow-950 w-[30vw] flex flex-row justify-around items-center"
+        >
+          <div className="bg-blue-400 control-knob-zone">
+            <div className="bg-green-500 h-[100px]"></div>
+            <label>Timing</label>
+          </div>
+          <div className="bg-blue-400 control-knob-zone">
+            <div className="bg-green-500 h-[100px]"></div>
+            <label>Timing</label>
+          </div>
         </div>
       </div>
       <div id="sequencing-view" className="h-[75vh] bg-green-800 flex flex-row">

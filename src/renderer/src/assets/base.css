@@ -45,3 +45,17 @@ body {
   @apply m-[5px];
   @apply border-collapse;
 }
+.control-knob-zone {
+  @apply h-[125px];
+  @apply w-[100px];
+  @apply text-center;
+  @apply font-bold;
+}
+.waveform-control {
+  @apply bg-yellow-200;
+  @apply h-10;
+  @apply w-10;
+  @apply m-1;
+  @apply text-center;
+  @apply font-bold;
+}
