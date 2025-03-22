@@ -17,7 +17,7 @@ const PitchKnob = React.memo(() => {
         angleRange={280}
         steps={10}
         min={-50}
-        max={100}
+        max={50}
         onChange={handleChange}
       >
         <Scale tickWidth={2} tickHeight={2} radius={45} />
