@@ -19,7 +19,7 @@ const GainKnob = React.memo(() => {
         min={0}
         max={100}
         className="gainKnob"
-        onChange={(value) => console.log(value)}
+        onChange={handleChange}
       >
         <Scale tickWidth={2} tickHeight={2} radius={45} />
         <circle r="35" cx="50" cy="50" />,
