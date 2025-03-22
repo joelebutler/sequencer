@@ -1,4 +1,5 @@
-import { useEffect, useState, useCallback } from 'react'
+/* eslint-disable react/prop-types */
+import { useState } from 'react'
 
 function Beat({ soundID, position }) {
   const [enabled, toggleEnabled] = useState(false)

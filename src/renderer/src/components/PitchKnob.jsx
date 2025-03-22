@@ -7,7 +7,7 @@ const PitchKnob = React.memo(() => {
   const handleChange = useCallback((newValue) => {
     const roundedValue = Math.round(newValue)
     setValue(roundedValue)
-  })
+  }, [])
 
   return (
     <div className="bg-blue-400 control-knob-zone">
@@ -28,5 +28,7 @@ const PitchKnob = React.memo(() => {
     </div>
   )
 })
+
+PitchKnob.displayName = 'PitchKnob'
 
 export default PitchKnob

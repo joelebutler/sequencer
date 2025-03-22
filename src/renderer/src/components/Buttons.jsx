@@ -1,5 +1,5 @@
-import React from 'react'
-import { useEffect, useState, useCallback } from 'react'
+/* eslint-disable react/prop-types */
+import { useEffect, useState } from 'react'
 import cowbell from '../assets/sounds/cowbell.wav'
 import hi from '../assets/sounds/hi-hat.wav'
 import kick from '../assets/sounds/kick.wav'
@@ -18,20 +18,14 @@ function Button({ name }) {
     sound = new Audio(snare)
   }
 
-  const handleClick = useCallback(() => {
+  const handleClick = () => {
     togglePlay(!playing)
-    if (playing === false) {
-      setActive('')
-    } else {
-      setActive('active-inst')
-    }
-  })
-
-  const playSound = () => {
-    sound.play()
   }
 
   useEffect(() => {
+    const playSound = () => {
+      sound.play()
+    }
     let interval
     if (playing) {
       interval = setInterval(playSound, 500)
@@ -39,7 +33,7 @@ function Button({ name }) {
       clearInterval(interval)
     }
     return () => clearInterval(interval)
-  }, [playing])
+  }, [playing, sound])
 
   return (
     <button className="inst-button" onClick={handleClick} id={playing ? 'active-inst' : null}>

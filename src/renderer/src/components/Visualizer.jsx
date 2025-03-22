@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import { useState, useRef } from 'react'
 import { AudioVisualizer } from 'react-audio-visualize'
 
 function Visualizer() {
@@ -24,4 +24,4 @@ function Visualizer() {
   )
 }
 
-export default Visualizer;
+export default Visualizer
