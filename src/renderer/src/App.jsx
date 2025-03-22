@@ -1,4 +1,4 @@
-import Buttons from "./components/Buttons"
+import Buttons from "./components/Buttons.jsx"
 
 function App() {
   const ipcHandle = () => window.electron.ipcRenderer.send('ping')
