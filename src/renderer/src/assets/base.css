@@ -42,6 +42,9 @@ body {
 .active-beat-col {
   @apply bg-green-800;
 }
+.beat-enabled.active-beat-col {
+  @apply bg-orange-600;
+}
 .beat-pos {
   @apply h-fit;
   @apply max-w-full;
