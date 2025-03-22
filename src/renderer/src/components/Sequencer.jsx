@@ -1,6 +1,9 @@
 import Buttons from './Buttons.jsx'
-import { GainKnob } from './GainKnob.jsx'
-import { TempoKnob } from './TempoKnob.jsx'
+import GainKnob from './GainKnob.jsx'
+import TempoKnob from './TempoKnob.jsx'
+import PitchKnob from './PitchKnob.jsx'
+import TimingKnob from './TimingKnob.jsx'
+import GlobalKnob from './GlobalKnob.jsx'
 
 export function Sequencer() {
   return (
@@ -10,18 +13,9 @@ export function Sequencer() {
           id="active-controls"
           className="bg-slate-500 flex-grow flex flex-row justify-around items-center"
         >
-          <div className="bg-blue-400 control-knob-zone">
-            <GainKnob />
-            <label>Gain</label>
-          </div>
-          <div className="bg-blue-400 control-knob-zone">
-            <div className="bg-green-500 h-[100px]"></div>
-            <label>Pitch</label>
-          </div>
-          <div className="bg-blue-400 control-knob-zone">
-            <div className="bg-green-500 h-[100px]"></div>
-            <label>Timing</label>
-          </div>
+          <GainKnob />
+          <PitchKnob />
+          <TimingKnob />
           <div className="bg-red-500 w-[300px] h-[200px]">
             <div className="bg-blue-800 w-full h-3/4">
               <label>Waveform</label>
@@ -39,14 +33,8 @@ export function Sequencer() {
           id="global-controls"
           className=" bg-yellow-950 w-[30vw] flex flex-row justify-around items-center"
         >
-          <div className="bg-blue-400 control-knob-zone">
-            <TempoKnob />
-            <label>Tempo</label>
-          </div>
-          <div className="bg-blue-400 control-knob-zone">
-            <div className="bg-green-500 h-[100px]"></div>
-            <label>Timing</label>
-          </div>
+          <TempoKnob/>
+          <GlobalKnob/>
         </div>
       </div>
       <div id="sequencing-view" className="h-[75vh] bg-green-800 flex flex-row">

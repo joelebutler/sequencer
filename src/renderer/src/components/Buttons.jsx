@@ -1,32 +1,45 @@
 import React from 'react'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
+import cowbell from '../assets/sounds/cowbell.wav'
+import hi from '../assets/sounds/hi-hat.wav'
+import kick from '../assets/sounds/kick.wav'
+import snare from '../assets/sounds/snare.wav'
 
-function Button({ name, sound }) {
-  const [playing, togglePlay] = useState(false);
+function Button({ name }) {
+  const [playing, togglePlay] = useState(false)
+  let sound = null
+  if (name === 'cowbell') {
+    sound = new Audio(cowbell)
+  } else if (name === 'hi') {
+    sound = new Audio(hi)
+  } else if (name === 'kick') {
+    sound = new Audio(kick)
+  } else if (name === 'snare') {
+    sound = new Audio(snare)
+  }
 
-  const handleClick = () => {
-    togglePlay(!playing);
+  const handleClick = useCallback(() => {
+    togglePlay(!playing)
     if (playing === false) {
       setActive('')
     } else {
       setActive('active-inst')
     }
-  }
+  })
 
   const playSound = () => {
-    const audio = new Audio(sound)
-    audio.play()
+    sound.play()
   }
 
   useEffect(() => {
-    let interval;
+    let interval
     if (playing) {
-      interval = setInterval(playSound, 500);
+      interval = setInterval(playSound, 500)
     } else {
-      clearInterval(interval);
+      clearInterval(interval)
     }
-    return () => clearInterval(interval);
-  }, [playing]);
+    return () => clearInterval(interval)
+  }, [playing])
 
   return (
     <button className="inst-button" onClick={handleClick} id={playing ? 'active-inst' : null}>
@@ -36,17 +49,14 @@ function Button({ name, sound }) {
 }
 
 function Buttons() {
-  const sounds = import.meta.glob('../assets/sounds/*', {eager: true});
-  const soundEntries = Object.entries(sounds);
   return (
     <div className="buttons">
       <Button name="FX" />
       <Button name="FX2" />
-      {soundEntries.map(([path, sound]) => {
-        const soundUrl = sound.default; // Extract the actual audio file
-        const soundName = path.replace(/^.*[\\/]/, '').replace(/\.[^/.]+$/, '')
-        return <Button key={soundName} name={soundName} sound={soundUrl} />
-      })}
+      <Button name="cowbell" />
+      <Button name="hi" />
+      <Button name="kick" />
+      <Button name="snare" />
     </div>
   )
 }
