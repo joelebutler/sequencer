@@ -2,10 +2,10 @@ import React from 'react'
 import { useEffect, useState } from 'react'
 
 function Button({ name, sound }) {
-  const [playing, togglePlay] = useState(false);
+  const [playing, togglePlay] = useState(false)
 
   const handleClick = () => {
-    togglePlay(!playing);
+    togglePlay(!playing)
     if (playing === false) {
       setActive('')
     } else {
@@ -19,14 +19,14 @@ function Button({ name, sound }) {
   }
 
   useEffect(() => {
-    let interval;
+    let interval
     if (playing) {
-      interval = setInterval(playSound, 500);
+      interval = setInterval(playSound, 500)
     } else {
-      clearInterval(interval);
+      clearInterval(interval)
     }
-    return () => clearInterval(interval);
-  }, [playing]);
+    return () => clearInterval(interval)
+  }, [playing])
 
   return (
     <button className="inst-button" onClick={handleClick} id={playing ? 'active-inst' : null}>
@@ -36,18 +36,18 @@ function Button({ name, sound }) {
 }
 
 function Buttons() {
-  const sounds = import.meta.glob('../assets/sounds/*', {eager: true});
-  const soundEntries = Object.entries(sounds);
+  const sounds = import.meta.glob('../assets/sounds/*', { eager: true })
+  const soundEntries = Object.entries(sounds)
   return (
-    <div className="buttons">
+    <>
       <Button name="FX" />
       <Button name="FX2" />
       {soundEntries.map(([path, sound]) => {
-        const soundUrl = sound.default; // Extract the actual audio file
+        const soundUrl = sound.default // Extract the actual audio file
         const soundName = path.replace(/^.*[\\/]/, '').replace(/\.[^/.]+$/, '')
         return <Button key={soundName} name={soundName} sound={soundUrl} />
       })}
-    </div>
+    </>
   )
 }
 
