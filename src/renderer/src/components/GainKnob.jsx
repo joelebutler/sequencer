@@ -25,7 +25,7 @@ const GainKnob = React.memo(() => {
         <circle r="35" cx="50" cy="50" />,
         <Pointer width={2} height={35} radius={10} type="rect" color="#FC5A96" />
       </Knob>
-      <label>Gain: {value}</label>
+      <label>Volume: {value}</label>
     </div>
   )
 })

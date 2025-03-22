@@ -1,3 +1,4 @@
+import React, { useState } from 'react'
 import Buttons from './Buttons.jsx'
 import GainKnob from './GainKnob.jsx'
 import TempoKnob from './TempoKnob.jsx'
@@ -11,9 +12,15 @@ import BeatRow from './BeatRow.jsx'
 import Metronome from './Metronome.jsx'
 
 export function Sequencer() {
+  const [tempo, setTempo] = useState(60)
+
+  const handleTempoChange = (newTempo) => {
+    setTempo(newTempo)
+  }
+
   return (
     <div id="main-content" className="flex flex-col h-full content-stretch">
-      <Metronome></Metronome>
+      <Metronome tempo={tempo} />
       <div className="flex flex-row justify-between p-[20px]">
         <h2>Michaeland TR-909</h2>
         <h2>A sequencer by Joel Butler & Michael Vitale</h2>
@@ -48,7 +55,7 @@ export function Sequencer() {
           </div>
         </div>
         <div id="global-controls" className=" w-[30vw] flex flex-row justify-around items-center">
-          <TempoKnob />
+          <TempoKnob onChange={handleTempoChange} />
           <GlobalKnob />
         </div>
       </div>

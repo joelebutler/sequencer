@@ -1,8 +1,13 @@
 import { useState, useEffect } from 'react'
 
-const Metronome = () => {
+const Metronome = ({ tempo }) => {
   const [currentCol, setCurrentCol] = useState(0)
+  const [ms, setMs] = useState(200)
   const rows = []
+
+  useEffect(() => {
+    setMs(60000 / tempo)
+  }, [tempo])
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -17,10 +22,10 @@ const Metronome = () => {
         button.classList.add('active-beat-col')
       }
       setCurrentCol(currentCol + 1 <= 16 ? currentCol + 1 : 1)
-    }, 200)
+    }, ms/4)
 
     return () => clearInterval(interval) // Cleanup on component unmount
-  }, [rows.length, currentCol])
+  }, [rows.length, currentCol, ms])
 
   return <span id="metronome"></span>
 }
