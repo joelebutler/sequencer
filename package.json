@@ -20,6 +20,7 @@
   "dependencies": {
     "@electron-toolkit/preload": "^3.0.1",
     "@electron-toolkit/utils": "^4.0.0",
+    "rc-knob": "^1.0.1",
     "react-knob-headless": "^0.3.0",
     "react-rotary-knob": "^3.0.3"
   },

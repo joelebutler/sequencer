@@ -1,4 +1,6 @@
 import Buttons from './Buttons.jsx'
+import { GainKnob } from './GainKnob.jsx'
+import { TempoKnob } from './TempoKnob.jsx'
 
 export function Sequencer() {
   return (
@@ -9,7 +11,7 @@ export function Sequencer() {
           className="bg-slate-500 flex-grow flex flex-row justify-around items-center"
         >
           <div className="bg-blue-400 control-knob-zone">
-            <div className="bg-green-500 h-[100px]"></div>
+            <GainKnob />
             <label>Gain</label>
           </div>
           <div className="bg-blue-400 control-knob-zone">
@@ -38,8 +40,8 @@ export function Sequencer() {
           className=" bg-yellow-950 w-[30vw] flex flex-row justify-around items-center"
         >
           <div className="bg-blue-400 control-knob-zone">
-            <div className="bg-green-500 h-[100px]"></div>
-            <label>Timing</label>
+            <TempoKnob />
+            <label>Tempo</label>
           </div>
           <div className="bg-blue-400 control-knob-zone">
             <div className="bg-green-500 h-[100px]"></div>
@@ -55,7 +57,7 @@ export function Sequencer() {
           <div className="beat-pos flex flex-row grow-0">
             <span>1</span>
           </div>
-          <Buttons/>
+          <Buttons />
         </div>
         <div
           id="beat-button-container"
