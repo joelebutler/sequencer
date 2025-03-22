@@ -5,6 +5,7 @@ import PitchKnob from './PitchKnob.jsx'
 import TimingKnob from './TimingKnob.jsx'
 import GlobalKnob from './GlobalKnob.jsx'
 import Visualizer from './Visualizer.jsx'
+import BeatRow from './BeatRow.jsx'
 
 export function Sequencer() {
   return (
@@ -70,114 +71,12 @@ export function Sequencer() {
               <span>15</span>
               <span>16</span>
             </div>
-            <div className="beat-row flex flex-row grow-0 justify-between">
-              <button className="beat-button bg-orange-500"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-            </div>
-            <div className="beat-row flex flex-row grow-0">
-              <button className="beat-button bg-orange-500"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-            </div>
-            <div className="beat-row flex flex-row grow-0">
-              <button className="beat-button bg-orange-500"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-            </div>
-            <div className="beat-row flex flex-row grow-0">
-              <button className="beat-button bg-orange-500"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-            </div>
-            <div className="beat-row flex flex-row grow-0">
-              <button className="beat-button bg-orange-500"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-            </div>
-            <div className="beat-row flex flex-row grow-0">
-              <button className="beat-button bg-orange-500"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-              <button className="beat-button"></button>
-            </div>
+            <BeatRow />
+            <BeatRow />
+            <BeatRow />
+            <BeatRow />
+            <BeatRow />
+            <BeatRow />
           </div>
         </div>
       </div>
