@@ -9,27 +9,26 @@ html,
 body {
   margin: 0;
   padding: 0;
-  color: white;
+  @apply bg-amber-50;
   font-family: 'Alte-Din', sans-serif;
 }
-.inst-button {
-  @apply bg-green-500;
+.inst-button,
+.beat-button {
+  @apply bg-amber-100;
   @apply w-4/5;
-  @apply h-[75px];
+  @apply min-w-[50px];
+  @apply h-[65px];
   @apply border-black;
   @apply border-2;
   @apply rounded-lg;
-}
-.beat-button {
-  @apply min-w-[75px];
-  @apply h-[75px];
-  @apply bg-green-800;
+  @apply mb-[20px];
   @apply mr-[5px];
   @apply ml-[5px];
-  @apply border-collapse;
 }
 .beat-row {
   @apply max-w-full;
+  @apply justify-between;
+  @apply w-full;
 }
 .beat-pos {
   @apply h-fit;
@@ -39,9 +38,8 @@ body {
   @apply inline-block;
   @apply text-center;
   @apply text-2xl;
-  @apply font-bold;
-  @apply min-w-[75px];
-  @apply bg-green-800;
+  @apply min-w-[50px];
+  @apply w-4/5;
   @apply m-[5px];
   @apply border-collapse;
 }
