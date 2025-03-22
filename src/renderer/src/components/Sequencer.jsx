@@ -4,6 +4,7 @@ import TempoKnob from './TempoKnob.jsx'
 import PitchKnob from './PitchKnob.jsx'
 import TimingKnob from './TimingKnob.jsx'
 import GlobalKnob from './GlobalKnob.jsx'
+import Visualizer from './Visualizer.jsx'
 
 export function Sequencer() {
   return (

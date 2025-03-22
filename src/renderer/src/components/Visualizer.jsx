@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react'
 import { AudioVisualizer } from 'react-audio-visualize'
 
-export function Visualizer() {
+function Visualizer() {
   const [blob, setBlob] = useState(null)
   const visualizerRef = useRef(null)
 
@@ -23,3 +23,5 @@ export function Visualizer() {
     </div>
   )
 }
+
+export default Visualizer;
