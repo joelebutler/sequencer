@@ -50,7 +50,7 @@ function Button({ name }) {
 
 function Buttons() {
   return (
-    <div className="buttons">
+    <>
       <Button name="FX" />
       <Button name="FX2" />
       <Button name="cowbell" />

@@ -19,6 +19,7 @@ export function Sequencer() {
           <div className="bg-red-500 w-[300px] h-[200px]">
             <div className="bg-blue-800 w-full h-3/4">
               <label>Waveform</label>
+              <Visualizer />
             </div>
             <div className="flex flex-row justify-between">
               <button className="waveform-control">O</button>
