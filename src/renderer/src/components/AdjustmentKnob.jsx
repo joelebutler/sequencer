@@ -15,11 +15,14 @@ const AdjustmentKnob = React.memo(({ setRecentAdjustment, recentAdjustment, rece
     }
   }, [recentInst, recentAdjustment, recentInstLocal, setRecentAdjustment])
 
-  const handleChange = useCallback((newValue) => {
-    const roundedValue = Math.round(newValue)
-    setValue(roundedValue) // Update the local state
-    setRecentAdjustment(roundedValue)
-  }, [])
+  const handleChange = useCallback(
+    (newValue) => {
+      const roundedValue = Math.round(newValue)
+      setValue(roundedValue) // Update the local state
+      setRecentAdjustment(roundedValue)
+    },
+    [setRecentAdjustment]
+  )
 
   return (
     <div className="control-knob-zone">
