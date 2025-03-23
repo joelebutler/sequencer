@@ -1,25 +1,27 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/display-name */
 import { Knob, Pointer, Scale } from 'rc-knob'
-import React, { useState, useCallback } from 'react'
-import { debounce } from 'lodash'
+import React, { useState, useCallback, useEffect } from 'react'
 
-const AdjustmentKnob = React.memo(() => {
-  const [value, setValue] = useState(0)
+const AdjustmentKnob = React.memo(({ setRecentAdjustment, recentAdjustment, recentInst }) => {
+  const [value, setValue] = useState(0) // Default adjustment value
+  const [recentInstLocal, setRecentInstLocal] = useState('')
 
-  const debouncedOnChange = useCallback(
-    debounce((newValue) => {
-      onChange(newValue)
-    }, 300),
-    []
-  )
+  // Update the knob value when recentInst changes
+  useEffect(() => {
+    if (recentInst !== recentInstLocal) {
+      setRecentInstLocal(recentInst) // Track the most recent instrument
+      setValue(recentAdjustment) // Update the knob value to match the recent adjustment
+    }
+  }, [recentInst, recentAdjustment, recentInstLocal])
 
   const handleChange = useCallback(
     (newValue) => {
       const roundedValue = Math.round(newValue)
-      setValue(roundedValue)
-      debouncedOnChange(roundedValue)
+      setValue(roundedValue) // Update the local state
+      setRecentAdjustment(roundedValue) // Update the parent state
     },
-    [debouncedOnChange]
+    [setRecentAdjustment]
   )
 
   return (
@@ -31,21 +33,21 @@ const AdjustmentKnob = React.memo(() => {
         steps={10}
         min={0}
         max={100}
-        initialValue={0}
+        value={value} // Bind the knob's value to the state
         onChange={handleChange}
       >
         <Scale tickWidth={2} tickHeight={2} radius={45} />
-        <circle r="35" cx="50" cy="50" fill="#FC5A96" />,
+        <circle r="35" cx="50" cy="50" fill="#FC5A96" />
         <Pointer
           width={2}
           height={35}
           radius={10}
           type="rect"
           color="#FC5A96"
-          percentage={value / 100}
+          percentage={value / 100} // Map value to percentage
         />
       </Knob>
-      <label>Offset: {value}</label>
+      <label>Adjustment: {value}</label>
     </div>
   )
 })

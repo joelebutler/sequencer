@@ -19,6 +19,7 @@ export function Sequencer() {
   const [recentVolume, setRecentVolume] = useState(0.8) // State to track the most recent volume
   const [recentPitch, setRecentPitch] = useState(10) // State to track the most recent pitch
   const [currentCol, setCurrentCol] = useState(0)
+  const [recentAdjustment, setRecentAdjustment] = useState(0) // State to track the most recent adjustment
 
   const handleTempoChange = (newTempo) => {
     // console.log(newTempo)
@@ -52,7 +53,11 @@ export function Sequencer() {
             recentPitch={recentPitch}
             recentInst={recentInst}
           />
-          <AdjustmentKnob />
+          <AdjustmentKnob
+            setRecentAdjustment={setRecentAdjustment}
+            recentAdjustment={recentAdjustment}
+            recentInst={recentInst}
+          />
           <div className="bg-red-500 w-[300px] h-[200px]">
             <div className="bg-blue-800 w-full h-3/4">
               <label>Waveform</label>
@@ -97,6 +102,8 @@ export function Sequencer() {
             setRecentVolume={setRecentVolume}
             recentPitch={recentPitch}
             setRecentPitch={setRecentPitch}
+            recentAdjustment={recentAdjustment}
+            setRecentAdjustment={setRecentAdjustment}
             globalVol={globalVol}
             currentCol={currentCol}
           />{' '}

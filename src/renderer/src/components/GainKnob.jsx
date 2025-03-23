@@ -1,25 +1,36 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/display-name */
 import { Knob, Pointer, Scale } from 'rc-knob'
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useEffect } from 'react'
 import { debounce } from 'lodash'
 
 const GainKnob = React.memo(({ setRecentVolume, recentVolume, recentInst }) => {
-  const [value, setValue] = useState(0)
+  const [value, setValue] = useState(0) // Default volume value
   const [recentInstLocal, setRecentInstLocal] = useState('')
 
-  if (recentInst !== recentInstLocal) {
-    setRecentInstLocal(recentInst)
-    setValue(recentVolume)
-  }
+  // Update the knob value when recentInst changes
+  useEffect(() => {
+    if (recentInst !== recentInstLocal) {
+      setRecentInstLocal(recentInst) // Track the most recent instrument
+      setValue(recentVolume) // Update the knob value to match the recent volume
+    }
+  }, [recentInst, recentVolume, recentInstLocal])
+
+  const debouncedOnChange = useCallback(
+    debounce((newValue) => {
+      console.log('Volume changed:', newValue)
+    }, 300),
+    []
+  )
 
   const handleChange = useCallback(
     (newValue) => {
       const roundedValue = Math.round(newValue)
-      setValue(roundedValue)
-      setRecentVolume(roundedValue)
+      setValue(roundedValue) // Update the local state
+      setRecentVolume(roundedValue) // Update the parent state
+      debouncedOnChange(roundedValue)
     },
-    [setRecentVolume]
+    [debouncedOnChange, setRecentVolume]
   )
 
   return (
@@ -31,12 +42,11 @@ const GainKnob = React.memo(({ setRecentVolume, recentVolume, recentInst }) => {
         steps={10}
         min={0}
         max={100}
-        initialValue={0}
-        className="gainKnob"
+        value={value} // Bind the knob's value to the state
         onChange={handleChange}
       >
         <Scale tickWidth={2} tickHeight={2} radius={45} />
-        <circle r="35" cx="50" cy="50" />,
+        <circle r="35" cx="50" cy="50" fill="#FC5A96" />
         <Pointer
           width={2}
           height={35}

@@ -1,14 +1,18 @@
+/* eslint-disable react/display-name */
 import { Knob, Pointer, Scale } from 'rc-knob'
 import React, { useState, useCallback } from 'react'
 
 const GlobalKnob = React.memo(({ onChange }) => {
   const [value, setValue] = useState(80)
 
-  const handleChange = useCallback((newValue) => {
-    const roundedValue = Math.round(newValue)
-    setValue(roundedValue)
-    onChange(roundedValue)
-  }, [onChange])
+  const handleChange = useCallback(
+    (newValue) => {
+      const roundedValue = Math.round(newValue)
+      setValue(roundedValue)
+      onChange(roundedValue)
+    },
+    [onChange]
+  )
 
   return (
     <div className="bg-blue-400 control-knob-zone">
@@ -30,4 +34,4 @@ const GlobalKnob = React.memo(({ onChange }) => {
   )
 })
 
-export default GlobalKnob;
+export default GlobalKnob

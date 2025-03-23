@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import cowbell from '../assets/sounds/cowbell.wav'
 import hi from '../assets/sounds/hi-hat.wav'
 import kick from '../assets/sounds/kick.wav'
@@ -12,15 +12,19 @@ function Button({
   recentInst,
   recentVolume,
   setRecentVolume,
-  globalVol,
   recentPitch,
   setRecentPitch,
+  recentAdjustment,
+  setRecentAdjustment,
+  globalVol,
   currentCol
 }) {
+  const [localVolume, setLocalVolume] = useState(100) // Local volume for this button
+  const [localPitch, setLocalPitch] = useState(10) // Local pitch for this button
+  const [localAdjustment, setLocalAdjustment] = useState(0) // Local adjustment for this button
   const [enabled, toggleEnabled] = useState(false)
   const [recent, setRecent] = useState(false)
-  const [localVolume, setLocalVolume] = useState(100)
-  const [localPitch, setLocalPitch] = useState(10)
+
   let sound = null
   if (defaultSound === 'cowbell') {
     sound = new Audio(cowbell)
@@ -33,25 +37,46 @@ function Button({
   } else {
     sound = new Audio()
   }
+
   sound.preload = 'auto'
   sound.loop = 'false'
   sound.preservesPitch = 'false'
 
-  // Set local volumes and pitches if they are different from recent
-  if (recentInst === defaultSound && recentVolume !== localVolume) {
-    setLocalVolume(recentVolume)
-  }
-  if (recentInst === defaultSound && recentPitch !== localPitch) {
-    setLocalPitch(recentPitch)
-  }
+  // Update local values when this button becomes the recent instrument
+  useEffect(() => {
+    if (recentInst === defaultSound && recentVolume !== localVolume) {
+      setLocalVolume(recentVolume)
+    }
+    if (recentInst === defaultSound && recentPitch !== localPitch) {
+      setLocalPitch(recentPitch)
+    }
+    if (recentInst === defaultSound && recentAdjustment !== localAdjustment) {
+      setLocalAdjustment(recentAdjustment)
+    }
+  }, [
+    recentInst,
+    defaultSound,
+    recentVolume,
+    recentPitch,
+    recentAdjustment,
+    localVolume,
+    localPitch,
+    localAdjustment
+  ])
 
-  const playOneShot = () => {
-    sound.currentTime = 0
+  const playOneShot = useCallback(() => {
+    console.log(Math.round(localAdjustment / 100))
+    const startTime = Math.max(
+      0,
+      Math.min(sound.duration, sound.duration * (localAdjustment / 100))
+    )
+    sound.currentTime = isFinite(startTime) ? startTime : 0
     sound.loop = false
     sound.volume = sound.volume * (globalVol / 100) * (localVolume / 100)
     sound.playbackRate = localPitch / 10
     sound.play()
-  }
+  }, [globalVol, localVolume, localPitch, sound, localAdjustment])
+
   const handleClick = () => {
     toggleEnabled(!enabled)
     playOneShot()
@@ -65,13 +90,14 @@ function Button({
     setRecentInst(defaultSound)
     setRecentVolume(localVolume)
     setRecentPitch(localPitch)
+    setRecentAdjustment(localAdjustment)
   }
 
   useEffect(() => {
     if (enabled && currentCol === parseInt(soundID)) {
       playOneShot()
     }
-  }, [currentCol, enabled, soundID])
+  }, [currentCol, enabled, soundID, playOneShot])
 
   return (
     <button
@@ -92,6 +118,8 @@ function Buttons({
   setRecentVolume,
   recentPitch,
   setRecentPitch,
+  recentAdjustment,
+  setRecentAdjustment,
   currentCol
 }) {
   return (
@@ -106,6 +134,8 @@ function Buttons({
         setRecentVolume={setRecentVolume}
         recentPitch={recentPitch}
         setRecentPitch={setRecentPitch}
+        recentAdjustment={recentAdjustment}
+        setRecentAdjustment={setRecentAdjustment}
         currentCol={currentCol}
       />
       <Button
@@ -118,6 +148,8 @@ function Buttons({
         setRecentVolume={setRecentVolume}
         recentPitch={recentPitch}
         setRecentPitch={setRecentPitch}
+        recentAdjustment={recentAdjustment}
+        setRecentAdjustment={setRecentAdjustment}
         currentCol={currentCol}
       />
       <Button
@@ -130,6 +162,8 @@ function Buttons({
         setRecentVolume={setRecentVolume}
         recentPitch={recentPitch}
         setRecentPitch={setRecentPitch}
+        recentAdjustment={recentAdjustment}
+        setRecentAdjustment={setRecentAdjustment}
         currentCol={currentCol}
       />
       <Button
@@ -142,6 +176,8 @@ function Buttons({
         setRecentVolume={setRecentVolume}
         recentPitch={recentPitch}
         setRecentPitch={setRecentPitch}
+        recentAdjustment={recentAdjustment}
+        setRecentAdjustment={setRecentAdjustment}
         currentCol={currentCol}
       />
       <Button
@@ -154,6 +190,8 @@ function Buttons({
         setRecentVolume={setRecentVolume}
         recentPitch={recentPitch}
         setRecentPitch={setRecentPitch}
+        recentAdjustment={recentAdjustment}
+        setRecentAdjustment={setRecentAdjustment}
         currentCol={currentCol}
       />
       <Button
@@ -166,6 +204,8 @@ function Buttons({
         setRecentVolume={setRecentVolume}
         recentPitch={recentPitch}
         setRecentPitch={setRecentPitch}
+        recentAdjustment={recentAdjustment}
+        setRecentAdjustment={setRecentAdjustment}
         currentCol={currentCol}
       />
     </>

@@ -26,7 +26,7 @@ const Metronome = ({ tempo, setCurrentCol, currentCol }) => {
     }, ms / 4)
 
     return () => clearInterval(interval) // Cleanup on component unmount
-  }, [rows.length, currentCol, ms])
+  }, [rows.length, currentCol, ms, setCurrentCol])
 
   return <span id="metronome"></span>
 }
