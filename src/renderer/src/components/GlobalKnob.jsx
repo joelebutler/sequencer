@@ -1,9 +1,17 @@
 /* eslint-disable react/display-name */
 import { Knob, Pointer, Scale } from 'rc-knob'
 import React, { useState, useCallback } from 'react'
+import { debounce } from 'lodash'
 
 const GlobalKnob = React.memo(({ onChange }) => {
   const [value, setValue] = useState(80)
+
+  const debouncedOnChange = useCallback(
+    debounce((newValue) => {
+      console.log('Volume changed:', newValue)
+    }, 300),
+    [onChange]
+  )
 
   const handleChange = useCallback(
     (newValue) => {
@@ -11,7 +19,7 @@ const GlobalKnob = React.memo(({ onChange }) => {
       setValue(roundedValue)
       onChange(roundedValue)
     },
-    [onChange]
+    [debouncedOnChange]
   )
 
   return (

@@ -1,8 +1,9 @@
 /* eslint-disable react/prop-types */
 import { Knob, Pointer, Scale } from 'rc-knob'
 import React, { useState, useCallback, useEffect } from 'react'
+import { debounce } from 'lodash'
 
-const PitchKnob = React.memo(({ setRecentPitch, recentPitch, recentInst }) => {
+const PitchKnob = React.memo(({ setRecentPitch, recentPitch, recentInst, onChange }) => {
   const [value, setValue] = useState(10) // Default pitch value
   const [recentInstLocal, setRecentInstLocal] = useState('')
 
@@ -14,13 +15,20 @@ const PitchKnob = React.memo(({ setRecentPitch, recentPitch, recentInst }) => {
     }
   }, [recentInst, recentPitch, recentInstLocal])
 
+  const debouncedOnChange = useCallback(
+    debounce((newValue) => {
+      console.log('Volume changed:', newValue)
+    }, 300),
+    [onChange]
+  )
+
   const handleChange = useCallback(
     (newValue) => {
       const roundedValue = Math.round(newValue)
       setValue(roundedValue) // Update the local state
       setRecentPitch(roundedValue) // Update the parent state
     },
-    [setRecentPitch]
+    [debouncedOnChange, setRecentPitch]
   )
 
   return (
