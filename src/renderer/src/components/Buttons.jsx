@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import cowbell from '../assets/sounds/cowbell.wav'
 import hi from '../assets/sounds/hi-hat.wav'
 import kick from '../assets/sounds/kick.wav'
