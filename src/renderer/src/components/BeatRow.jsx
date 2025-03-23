@@ -8,7 +8,6 @@ function Beat({ soundID, position, currentCol, handleGrabHit }) {
   }
   useEffect(() => {
     if (enabled && currentCol == position) {
-      console.log('hit!' + soundID + position)
       handleGrabHit(soundID)
     }
   }, [currentCol, enabled, soundID, position, handleGrabHit])

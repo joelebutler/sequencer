@@ -21,6 +21,8 @@ export function Sequencer() {
   const [recentPitch, setRecentPitch] = useState(10) // State to track the most recent pitch
   const [currentCol, setCurrentCol] = useState(0)
   const [recentAdjustment, setRecentAdjustment] = useState(0) // State to track the most recent adjustment
+  const [paused, setPaused] = useState(false)
+  const [stopped, setStopped] = useState(false)
 
   const storeOneShot = useRef({})
 
@@ -60,7 +62,13 @@ export function Sequencer() {
 
   return (
     <div id="main-content" className="flex flex-col h-full content-stretch">
-      <Metronome tempo={tempo} setCurrentCol={setCurrentCol} currentCol={currentCol} />
+      <Metronome
+        tempo={tempo}
+        setCurrentCol={setCurrentCol}
+        currentCol={currentCol}
+        paused={paused}
+        stopped={stopped}
+      />
       <div className="flex flex-row justify-between p-[20px]">
         <h2>Michaeland TR-909</h2>
         <h2>A sequencer by Joel Butler & Michael Vitale</h2>
@@ -106,13 +114,19 @@ export function Sequencer() {
                   recorderControls={recorderControls}
                 />
               </button>
-              <button onClick={recorderControls.isPaused} className="waveform-control pause-btn">
+              <button onClick={() => setPaused(true)} className="waveform-control pause-btn">
                 <FaCirclePause />
               </button>
-              <button className="waveform-control play-btn">
+              <button
+                onClick={function () {
+                  setPaused(false)
+                  setStopped(false)
+                }}
+                className="waveform-control play-btn"
+              >
                 <FaCirclePlay />
               </button>
-              <button className="waveform-control stop-btn">
+              <button onClick={() => setStopped(true)} className="waveform-control stop-btn">
                 <FaCircleStop />
               </button>
               <button className="waveform-control upload-btn">
