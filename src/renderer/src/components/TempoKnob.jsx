@@ -1,15 +1,14 @@
 /* eslint-disable react/display-name */
 import { Knob, Pointer, Scale } from 'rc-knob'
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useEffect } from 'react'
 import { debounce } from 'lodash'
 
 const TempoKnob = React.memo(({ onChange }) => {
   const [value, setValue] = useState(120) // Default tempo value
-  const [firstPass, toggleFirstPass] = useState(true)
-  if (firstPass) {
+
+  useEffect(() => {
     onChange(value)
-    toggleFirstPass(false)
-  }
+  }, [value, onChange])
 
   const debouncedOnChange = useCallback(
     debounce((newValue) => {

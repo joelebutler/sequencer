@@ -2,6 +2,7 @@
 /* eslint-disable react/display-name */
 import { Knob, Pointer, Scale } from 'rc-knob'
 import React, { useState, useCallback } from 'react'
+import { debounce } from 'lodash'
 
 const GainKnob = React.memo(({ setRecentVolume, recentVolume, recentInst }) => {
   const [value, setValue] = useState(0)

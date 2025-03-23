@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 
-const Metronome = ({ tempo }) => {
-  const [currentCol, setCurrentCol] = useState(0)
+const Metronome = ({ tempo, setCurrentCol, currentCol }) => {
+  // const [currentCol, setCurrentCol] = useState(0)
   const [ms, setMs] = useState(200)
   const rows = []
 
@@ -11,6 +11,7 @@ const Metronome = ({ tempo }) => {
 
   useEffect(() => {
     const interval = setInterval(() => {
+      // console.log(currentCol)
       let allButtons = document.getElementsByClassName('beat-button')
       for (let button of allButtons) {
         button.classList.remove('active-beat-col')

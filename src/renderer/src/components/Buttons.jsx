@@ -14,7 +14,8 @@ function Button({
   setRecentVolume,
   globalVol,
   recentPitch,
-  setRecentPitch
+  setRecentPitch,
+  currentCol
 }) {
   const [enabled, toggleEnabled] = useState(false)
   const [recent, setRecent] = useState(false)
@@ -66,7 +67,11 @@ function Button({
     setRecentPitch(localPitch)
   }
 
-  useEffect(() => {}, [])
+  useEffect(() => {
+    if (enabled && currentCol === parseInt(soundID)) {
+      playOneShot()
+    }
+  }, [currentCol, enabled, soundID])
 
   return (
     <button
@@ -86,7 +91,8 @@ function Buttons({
   recentVolume,
   setRecentVolume,
   recentPitch,
-  setRecentPitch
+  setRecentPitch,
+  currentCol
 }) {
   return (
     <>
@@ -100,6 +106,7 @@ function Buttons({
         setRecentVolume={setRecentVolume}
         recentPitch={recentPitch}
         setRecentPitch={setRecentPitch}
+        currentCol={currentCol}
       />
       <Button
         soundID="2"
@@ -111,6 +118,7 @@ function Buttons({
         setRecentVolume={setRecentVolume}
         recentPitch={recentPitch}
         setRecentPitch={setRecentPitch}
+        currentCol={currentCol}
       />
       <Button
         soundID="3"
@@ -122,6 +130,7 @@ function Buttons({
         setRecentVolume={setRecentVolume}
         recentPitch={recentPitch}
         setRecentPitch={setRecentPitch}
+        currentCol={currentCol}
       />
       <Button
         soundID="4"
@@ -133,6 +142,7 @@ function Buttons({
         setRecentVolume={setRecentVolume}
         recentPitch={recentPitch}
         setRecentPitch={setRecentPitch}
+        currentCol={currentCol}
       />
       <Button
         soundID="5"
@@ -144,6 +154,7 @@ function Buttons({
         setRecentVolume={setRecentVolume}
         recentPitch={recentPitch}
         setRecentPitch={setRecentPitch}
+        currentCol={currentCol}
       />
       <Button
         soundID="6"
@@ -155,6 +166,7 @@ function Buttons({
         setRecentVolume={setRecentVolume}
         recentPitch={recentPitch}
         setRecentPitch={setRecentPitch}
+        currentCol={currentCol}
       />
     </>
   )
