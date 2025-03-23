@@ -5,8 +5,9 @@ import hi from '../assets/sounds/hi-hat.wav'
 import kick from '../assets/sounds/kick.wav'
 import snare from '../assets/sounds/snare.wav'
 
-function Button({ soundID, defaultSound, globalVol }) {
+function Button({ soundID, defaultSound, setRecentInst, globalVol }) {
   const [enabled, toggleEnabled] = useState(false)
+  const [recent, setRecent] = useState(false)
   let sound = null
   if (defaultSound === 'cowbell') {
     sound = new Audio(cowbell)
@@ -32,11 +33,21 @@ function Button({ soundID, defaultSound, globalVol }) {
   const handleClick = () => {
     toggleEnabled(!enabled)
     playOneShot()
+    const buttons = document.querySelectorAll('.inst-button')
+
+    buttons.forEach((button) => {
+      button.classList.remove('recent-inst')
+    })
+
+    setRecent(true)
+    setRecentInst(defaultSound)
   }
+
+  useEffect(() => {}, [])
 
   return (
     <button
-      className={`inst-button ${enabled ? 'active-inst' : ''}`}
+      className={`inst-button ${enabled ? 'active-inst' : ''} ${recent ? 'recent-inst' : ''}`}
       onClick={handleClick}
       id={'sound-' + soundID}
     >
@@ -45,15 +56,25 @@ function Button({ soundID, defaultSound, globalVol }) {
   )
 }
 
-function Buttons({ globalVol }) {
+function Buttons({ setRecentInst, globalVol }) {
   return (
     <>
-      <Button soundID="1" defaultSound="FX" globalVol={globalVol} />
-      <Button soundID="2" defaultSound="FX2" globalVol={globalVol} />
-      <Button soundID="3" defaultSound="cowbell" globalVol={globalVol} />
-      <Button soundID="4" defaultSound="hi" globalVol={globalVol} />
-      <Button soundID="5" defaultSound="kick" globalVol={globalVol} />
-      <Button soundID="6" defaultSound="snare" globalVol={globalVol} />
+      <Button soundID="1" defaultSound="FX" setRecentInst={setRecentInst} globalVol={globalVol} />
+      <Button soundID="2" defaultSound="FX2" setRecentInst={setRecentInst} globalVol={globalVol} />
+      <Button
+        soundID="3"
+        defaultSound="cowbell"
+        setRecentInst={setRecentInst}
+        globalVol={globalVol}
+      />
+      <Button soundID="4" defaultSound="hi" setRecentInst={setRecentInst} globalVol={globalVol} />
+      <Button soundID="5" defaultSound="kick" setRecentInst={setRecentInst} globalVol={globalVol} />
+      <Button
+        soundID="6"
+        defaultSound="snare"
+        setRecentInst={setRecentInst}
+        globalVol={globalVol}
+      />
     </>
   )
 }

@@ -22,7 +22,7 @@ const Metronome = ({ tempo }) => {
         button.classList.add('active-beat-col')
       }
       setCurrentCol(currentCol + 1 <= 16 ? currentCol + 1 : 1)
-    }, ms/4)
+    }, ms / 4)
 
     return () => clearInterval(interval) // Cleanup on component unmount
   }, [rows.length, currentCol, ms])
