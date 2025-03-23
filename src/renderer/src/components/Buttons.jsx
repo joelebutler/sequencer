@@ -45,6 +45,9 @@ function Button({
     soundRef.current.preload = 'auto'
     soundRef.current.loop = 'false'
     soundRef.current.preservesPitch = 'false'
+    soundRef.onloadeddata = () => {
+      setDuration(soundRef.current.duration)
+    }
   }, [defaultSound])
 
   // Update local values when this button becomes the recent instrument
@@ -80,13 +83,7 @@ function Button({
   const playOneShot = useCallback(() => {
     const sound = soundRef.current
     if (!sound || !enabled) return
-    const startTime = Math.max(
-      0,
-      Math.min(sound.duration, sound.duration * (localAdjustment / 100))
-    )
-    sound.onloadeddata = () => {
-      setDuration(sound.duration)
-    }
+    const startTime = Math.max(0, Math.min(duration, duration * (localAdjustment / 100)))
     sound.currentTime = isFinite(startTime) ? startTime : 0
     sound.loop = false
     sound.volume = sound.volume * (globalVol / 100) * (localVolume / 100)
