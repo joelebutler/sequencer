@@ -5,6 +5,7 @@ const Visualizer = ({ blob, recentAdjustment }) => {
   // Initialize the recorder controls using the hook
   // Get the recorded audio blob
   useEffect(() => {
+    console.log(blob)
     if (!blob || blob.type !== 'audio/wav') return
 
     //console.log(blob)
@@ -17,7 +18,7 @@ const Visualizer = ({ blob, recentAdjustment }) => {
         style={{ left: `${recentAdjustment}%` }}
       ></div>
       <AudioVisualizer
-        blob={blob.size > 0 && blob.type === 'audio/wav' ? blob : null}
+        blob={blob.size > 0 && blob.type !== 'text/html' ? blob : null}
         width={300}
         height={75}
         barWidth={1}
