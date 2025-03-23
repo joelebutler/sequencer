@@ -3,8 +3,6 @@ import { AudioVisualizer } from 'react-audio-visualize'
 
 const Visualizer = ({ blob, recentAdjustment }) => {
   // Initialize the recorder controls using the hook
-
-  console.log(recentAdjustment)
   // Get the recorded audio blob
   useEffect(() => {
     if (!blob || blob.type !== 'audio/wav') return

@@ -88,7 +88,7 @@ function Button({
     const startTime = Math.max(0, Math.min(duration, duration * (localAdjustment / 100)))
     sound.currentTime = isFinite(startTime) ? startTime : 0
     sound.loop = false
-    sound.volume = sound.volume * (globalVol / 100) * (localVolume / 100)
+    sound.volume = 1 * (globalVol / 100) * (localVolume / 100)
     sound.playbackRate = localPitch / 10
     sound.play()
   }, [globalVol, localVolume, localPitch, localAdjustment, enabled, duration])
@@ -134,12 +134,6 @@ function Button({
         console.error('Error fetching audio:', error)
       })
   }
-
-  useEffect(() => {
-    if (enabled && currentCol === parseInt(soundID)) {
-      playOneShot()
-    }
-  }, [currentCol, enabled, soundID, playOneShot])
 
   return (
     <button
