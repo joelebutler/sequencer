@@ -14,8 +14,9 @@ import Metronome from './Metronome.jsx'
 
 export function Sequencer() {
   const [tempo, setTempo] = useState(60)
-  const [globalVol, setGlobalVol] = useState(80);
+  const [globalVol, setGlobalVol] = useState(80)
   const [recentInst, setRecentInst] = useState('') // State to track the most recent instrument
+  const [recentVolume, setRecentVolume] = useState(0.8) // State to track the most recent instrument
 
   const handleTempoChange = (newTempo) => {
     console.log(newTempo)
@@ -39,7 +40,11 @@ export function Sequencer() {
           className="flex-grow flex flex-row justify-around items-center relative"
         >
           <RecentSelection recentInst={recentInst} /> {/* Pass recentInst as a prop */}
-          <GainKnob />
+          <GainKnob
+            setRecentVolume={setRecentVolume}
+            recentVolume={recentVolume}
+            recentInst={recentInst}
+          />
           <PitchKnob />
           <TimingKnob />
           <div className="bg-red-500 w-[300px] h-[200px]">
@@ -79,7 +84,13 @@ export function Sequencer() {
           <div className="beat-pos">
             <span>&nbsp;</span>
           </div>
-          <Buttons setRecentInst={setRecentInst} globalVol={globalVol} /> {/* Pass setRecentInst as a prop */}
+          <Buttons
+            setRecentInst={setRecentInst}
+            recentInst={recentInst}
+            recentVolume={recentVolume}
+            setRecentVolume={setRecentVolume}
+            globalVol={globalVol}
+          />{' '}
         </div>
         <div
           id="beat-button-zone"
