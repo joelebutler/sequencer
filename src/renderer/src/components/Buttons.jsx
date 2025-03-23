@@ -131,6 +131,16 @@ function Button({
     setRecentPitch(localPitch)
     setRecentAdjustment(localAdjustment)
 
+    fetch(soundRef.current.src)
+      .then((response) => response.blob())
+      .then((audioBlob) => {
+        setBlob(audioBlob)
+      })
+      .catch((error) => {
+        console.error('Error fetching audio:', error)
+      })
+  }
+
   return (
     <button
       className={`inst-button ${enabled ? 'active-inst' : ''} ${recent ? 'recent-inst' : ''}`}
