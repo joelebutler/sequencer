@@ -16,5 +16,10 @@ export default defineConfig({
       }
     },
     plugins: [react()]
+  },
+  server: {
+    headers: {
+      'Content-Security-Policy': "media-src 'self' data: blob: *;"
+    }
   }
 })

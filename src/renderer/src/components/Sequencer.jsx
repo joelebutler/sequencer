@@ -21,6 +21,7 @@ export function Sequencer() {
   const [recentPitch, setRecentPitch] = useState(10) // State to track the most recent pitch
   const [currentCol, setCurrentCol] = useState(0)
   const [recentAdjustment, setRecentAdjustment] = useState(0) // State to track the most recent adjustment
+  const [recordedAudio, setRecordedAudio] = useState(null)
 
   const storeOneShot = useRef({})
 
@@ -39,7 +40,6 @@ export function Sequencer() {
       }
     })
   }
-  const [recordedAudio, setRecordedAudio] = useState(null)
 
   const recorderControls = useAudioRecorder()
 
@@ -53,9 +53,22 @@ export function Sequencer() {
   }
 
   const handleRecordingComplete = (audioBlob) => {
-    const audioUrl = URL.createObjectUrl(audioBlob)
+    const audioUrl = URL.createObjectURL(audioBlob)
     const audio = new Audio(audioUrl)
     setRecordedAudio(audio)
+  }
+
+  const handleStartRecording = () => {
+    recorderControls.startRecording()
+    console.log('recording audio...')
+    console.log(recorderControls.isRecording)
+    console.log(recorderControls)
+  }
+
+  const handleStopRecording = () => {
+    recorderControls.stopRecording()
+    console.log('recording stoppped...')
+    console.log(recorderControls.isRecording)
   }
 
   return (
@@ -93,20 +106,23 @@ export function Sequencer() {
             </div>
             {/* Audio Controller */}
             <div className="flex flex-row justify-between">
-              <button
-                className="waveform-control record-btn"
-                onClick={
-                  recorderControls.isRecording
-                    ? recorderControls.stopRecording
-                    : recorderControls.startRecording
-                }
-              >
+              <div hidden>
                 <AudioRecorder
                   onRecordingComplete={handleRecordingComplete}
                   recorderControls={recorderControls}
                 />
+              </div>
+              <button
+                className="waveform-control record-btn"
+                onClick={
+                  recorderControls.isRecording
+                    ? handleStopRecording
+                    : handleStartRecording
+                }
+              >
+                <FaCircle />
               </button>
-              <button onClick={recorderControls.isPaused} className="waveform-control pause-btn">
+              <button className="waveform-control pause-btn">
                 <FaCirclePause />
               </button>
               <button className="waveform-control play-btn">
