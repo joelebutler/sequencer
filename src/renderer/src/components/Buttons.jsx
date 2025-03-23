@@ -17,7 +17,8 @@ function Button({
   recentAdjustment,
   setRecentAdjustment,
   globalVol,
-  currentCol
+  currentCol,
+  recordedAudio
 }) {
   const [localVolume, setLocalVolume] = useState(100) // Local volume for this button
   const [localPitch, setLocalPitch] = useState(10) // Local pitch for this button
@@ -63,6 +64,12 @@ function Button({
     localPitch,
     localAdjustment
   ])
+
+  useEffect(() => {
+    if (recentInst === defaultSound && recordedAudio) {
+      sound = recordedAudio
+    }
+  }, [recordedAudio, recentInst, defaultSound])
 
   const playOneShot = useCallback(() => {
     console.log(Math.round(localAdjustment / 100))

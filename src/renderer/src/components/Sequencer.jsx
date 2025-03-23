@@ -11,6 +11,7 @@ import { FaCirclePlay, FaCircleUp, FaCircleStop, FaCirclePause } from 'react-ico
 import BeatRow from './BeatRow.jsx'
 import RecentSelection from './RecentSelection.jsx'
 import Metronome from './Metronome.jsx'
+import { AudioRecorder, useAudioRecorder } from 'react-audio-voice-recorder'
 
 export function Sequencer() {
   const [tempo, setTempo] = useState(60)
@@ -20,6 +21,9 @@ export function Sequencer() {
   const [recentPitch, setRecentPitch] = useState(10) // State to track the most recent pitch
   const [currentCol, setCurrentCol] = useState(0)
   const [recentAdjustment, setRecentAdjustment] = useState(0) // State to track the most recent adjustment
+  const [recordedAudio, setRecordedAudio] = useState(null)
+
+  const recorderControls = useAudioRecorder()
 
   const handleTempoChange = (newTempo) => {
     // console.log(newTempo)
@@ -28,6 +32,12 @@ export function Sequencer() {
   const handleGlobalVolChange = (newGlobalVol) => {
     // console.log(newGlobalVol)
     setGlobalVol(newGlobalVol)
+  }
+
+  const handleRecordingComplete = (audioBlob) => {
+    const audioUrl = URL.createObjectUrl(audioBlob)
+    const audio = new Audio(audioUrl)
+    setRecordedAudio(audio)
   }
 
   return (
@@ -63,11 +73,22 @@ export function Sequencer() {
               <label>Waveform</label>
               <Visualizer />
             </div>
+            {/* Audio Controller */}
             <div className="flex flex-row justify-between">
-              <button className="waveform-control record-btn">
-                <FaCircle />
+              <button
+                className="waveform-control record-btn"
+                onClick={
+                  recorderControls.isRecording
+                    ? recorderControls.stopRecording
+                    : recorderControls.startRecording
+                }
+              >
+                <AudioRecorder
+                  onRecordingComplete={handleRecordingComplete}
+                  recorderControls={recorderControls}
+                />
               </button>
-              <button className="waveform-control pause-btn">
+              <button onClick={recorderControls.isPaused} className="waveform-control pause-btn">
                 <FaCirclePause />
               </button>
               <button className="waveform-control play-btn">
@@ -106,6 +127,7 @@ export function Sequencer() {
             setRecentAdjustment={setRecentAdjustment}
             globalVol={globalVol}
             currentCol={currentCol}
+            recordedAudio={recordedAudio}
           />{' '}
         </div>
         <div
