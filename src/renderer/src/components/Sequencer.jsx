@@ -17,9 +17,10 @@ export function Sequencer() {
   const [globalVol, setGlobalVol] = useState(80)
   const [recentInst, setRecentInst] = useState('') // State to track the most recent instrument
   const [recentVolume, setRecentVolume] = useState(0.8) // State to track the most recent instrument
+  const [currentCol, setCurrentCol] = useState(0)
 
   const handleTempoChange = (newTempo) => {
-    console.log(newTempo)
+    // console.log(newTempo)
     setTempo(newTempo)
   }
   const handleGlobalVolChange = (newGlobalVol) => {
@@ -29,7 +30,7 @@ export function Sequencer() {
 
   return (
     <div id="main-content" className="flex flex-col h-full content-stretch">
-      <Metronome tempo={tempo} />
+      <Metronome tempo={tempo} setCurrentCol={setCurrentCol} currentCol={currentCol} />
       <div className="flex flex-row justify-between p-[20px]">
         <h2>Michaeland TR-909</h2>
         <h2>A sequencer by Joel Butler & Michael Vitale</h2>
@@ -90,6 +91,7 @@ export function Sequencer() {
             recentVolume={recentVolume}
             setRecentVolume={setRecentVolume}
             globalVol={globalVol}
+            currentCol={currentCol}
           />{' '}
         </div>
         <div

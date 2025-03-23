@@ -12,7 +12,8 @@ function Button({
   recentInst,
   recentVolume,
   setRecentVolume,
-  globalVol
+  globalVol,
+  currentCol
 }) {
   const [enabled, toggleEnabled] = useState(false)
   const [recent, setRecent] = useState(false)
@@ -57,7 +58,11 @@ function Button({
     setRecentVolume(localVolume)
   }
 
-  useEffect(() => {}, [])
+  useEffect(() => {
+    if (enabled && currentCol === parseInt(soundID)) {
+      playOneShot()
+    }
+  }, [currentCol, enabled, soundID])
 
   return (
     <button
@@ -70,7 +75,7 @@ function Button({
   )
 }
 
-function Buttons({ setRecentInst, recentInst, globalVol, recentVolume, setRecentVolume }) {
+function Buttons({ setRecentInst, recentInst, globalVol, recentVolume, setRecentVolume, currentCol }) {
   return (
     <>
       <Button
@@ -81,6 +86,7 @@ function Buttons({ setRecentInst, recentInst, globalVol, recentVolume, setRecent
         globalVol={globalVol}
         recentVolume={recentVolume}
         setRecentVolume={setRecentVolume}
+        currentCol={currentCol}
       />
       <Button
         soundID="2"
@@ -90,6 +96,7 @@ function Buttons({ setRecentInst, recentInst, globalVol, recentVolume, setRecent
         globalVol={globalVol}
         recentVolume={recentVolume}
         setRecentVolume={setRecentVolume}
+        currentCol={currentCol}
       />
       <Button
         soundID="3"
@@ -99,6 +106,7 @@ function Buttons({ setRecentInst, recentInst, globalVol, recentVolume, setRecent
         globalVol={globalVol}
         recentVolume={recentVolume}
         setRecentVolume={setRecentVolume}
+        currentCol={currentCol}
       />
       <Button
         soundID="4"
@@ -108,6 +116,7 @@ function Buttons({ setRecentInst, recentInst, globalVol, recentVolume, setRecent
         globalVol={globalVol}
         recentVolume={recentVolume}
         setRecentVolume={setRecentVolume}
+        currentCol={currentCol}
       />
       <Button
         soundID="5"
@@ -117,6 +126,7 @@ function Buttons({ setRecentInst, recentInst, globalVol, recentVolume, setRecent
         globalVol={globalVol}
         recentVolume={recentVolume}
         setRecentVolume={setRecentVolume}
+        currentCol={currentCol}
       />
       <Button
         soundID="6"
@@ -126,6 +136,7 @@ function Buttons({ setRecentInst, recentInst, globalVol, recentVolume, setRecent
         globalVol={globalVol}
         recentVolume={recentVolume}
         setRecentVolume={setRecentVolume}
+        currentCol={currentCol}
       />
     </>
   )
