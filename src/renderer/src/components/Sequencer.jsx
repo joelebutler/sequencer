@@ -175,6 +175,7 @@ export function Sequencer() {
             currentCol={currentCol}
             registerOneShot={registerOneShot}
             recordedAudio={recordedAudio}
+            setBlob={setBlob}
           />{' '}
         </div>
         <div

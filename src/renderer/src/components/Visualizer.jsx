@@ -6,18 +6,15 @@ const Visualizer = ({ blob }) => {
 
   // Get the recorded audio blob
   useEffect(() => {
-    if (!blob) return
+    if (!blob || blob.type !== 'audio/wav') return
 
-    console.log(new Blob())
-    console.log(blob)
+    //console.log(blob)
   }, [blob])
 
   return (
     <>
-      <audio src={blob} />
-
       <AudioVisualizer
-        blob={blob.size > 0 ? blob : null}
+        blob={blob.size > 0 && blob.type === 'audio/wav' ? blob : null}
         width={300}
         height={75}
         barWidth={1}

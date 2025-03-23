@@ -19,7 +19,8 @@ function Button({
   globalVol,
   currentCol,
   registerOneShot,
-  recordedAudio
+  recordedAudio,
+  setBlob
 }) {
   const [localVolume, setLocalVolume] = useState(100) // Local volume for this button
   const [localPitch, setLocalPitch] = useState(10) // Local pitch for this button
@@ -75,7 +76,7 @@ function Button({
   // Update sound when recordedAudio changes and this button is the recent instrument
   useEffect(() => {
     if (recentInst === defaultSound && recordedAudio) {
-      console.log(`Received audio: ${recordedAudio}`)
+      console.log(`Received audio: ${recordedAudio} setBlob={setBlob}`)
       soundRef.current = recordedAudio
     }
   }, [recordedAudio, recentInst, defaultSound])
@@ -122,6 +123,15 @@ function Button({
     setRecentVolume(localVolume)
     setRecentPitch(localPitch)
     setRecentAdjustment(localAdjustment)
+
+    fetch(soundRef.current.src)
+      .then((response) => response.blob())
+      .then((audioBlob) => {
+        setBlob(audioBlob)
+      })
+      .catch((error) => {
+        console.error('Error fetching audio:', error)
+      })
   }
 
   useEffect(() => {
@@ -153,7 +163,8 @@ function Buttons({
   setRecentAdjustment,
   currentCol,
   registerOneShot,
-  recordedAudio
+  recordedAudio,
+  setBlob
 }) {
   return (
     <>
@@ -172,6 +183,7 @@ function Buttons({
         currentCol={currentCol}
         registerOneShot={registerOneShot}
         recordedAudio={recordedAudio}
+        setBlob={setBlob}
       />
       <Button
         soundID="2"
@@ -188,6 +200,7 @@ function Buttons({
         currentCol={currentCol}
         registerOneShot={registerOneShot}
         recordedAudio={recordedAudio}
+        setBlob={setBlob}
       />
       <Button
         soundID="3"
@@ -204,6 +217,7 @@ function Buttons({
         currentCol={currentCol}
         registerOneShot={registerOneShot}
         recordedAudio={recordedAudio}
+        setBlob={setBlob}
       />
       <Button
         soundID="4"
@@ -220,6 +234,7 @@ function Buttons({
         currentCol={currentCol}
         registerOneShot={registerOneShot}
         recordedAudio={recordedAudio}
+        setBlob={setBlob}
       />
       <Button
         soundID="5"
@@ -236,6 +251,7 @@ function Buttons({
         currentCol={currentCol}
         registerOneShot={registerOneShot}
         recordedAudio={recordedAudio}
+        setBlob={setBlob}
       />
       <Button
         soundID="6"
@@ -252,6 +268,7 @@ function Buttons({
         currentCol={currentCol}
         registerOneShot={registerOneShot}
         recordedAudio={recordedAudio}
+        setBlob={setBlob}
       />
     </>
   )
