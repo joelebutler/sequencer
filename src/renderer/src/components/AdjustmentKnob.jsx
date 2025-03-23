@@ -2,9 +2,8 @@
 /* eslint-disable react/display-name */
 import { Knob, Pointer, Scale } from 'rc-knob'
 import React, { useState, useCallback, useEffect } from 'react'
-import { debounce } from 'lodash'
 
-const AdjustmentKnob = React.memo(({ setRecentAdjustment, recentAdjustment, recentInst, onChange }) => {
+const AdjustmentKnob = React.memo(({ setRecentAdjustment, recentAdjustment, recentInst }) => {
   const [value, setValue] = useState(0) // Default adjustment value
   const [recentInstLocal, setRecentInstLocal] = useState('')
 
@@ -14,23 +13,13 @@ const AdjustmentKnob = React.memo(({ setRecentAdjustment, recentAdjustment, rece
       setRecentInstLocal(recentInst) // Track the most recent instrument
       setValue(recentAdjustment) // Update the knob value to match the recent adjustment
     }
-  }, [recentInst, recentAdjustment, recentInstLocal])
+  }, [recentInst, recentAdjustment, recentInstLocal, setRecentAdjustment])
 
-  const debouncedOnChange = useCallback(
-    debounce((newValue) => {
-      console.log('Volume changed:', newValue)
-    }, 300),
-    [onChange]
-  )
-
-  const handleChange = useCallback(
-    (newValue) => {
-      const roundedValue = Math.round(newValue)
-      setValue(roundedValue) // Update the local state
-      setRecentAdjustment(roundedValue) // Update the parent state
-    },
-    [debouncedOnChange, setRecentAdjustment]
-  )
+  const handleChange = useCallback((newValue) => {
+    const roundedValue = Math.round(newValue)
+    setValue(roundedValue) // Update the local state
+    setRecentAdjustment(roundedValue)
+  }, [])
 
   return (
     <div className="control-knob-zone">

@@ -1,23 +1,23 @@
 import { useEffect } from 'react'
 import { AudioVisualizer } from 'react-audio-visualize'
 
-const Visualizer = ({ blob }) => {
+const Visualizer = ({ blob, recentAdjustment }) => {
   // Initialize the recorder controls using the hook
-
   // Get the recorded audio blob
   useEffect(() => {
-    if (!blob) return
+    if (!blob || blob.type !== 'audio/wav') return
 
-    console.log(new Blob())
-    console.log(blob)
+    //console.log(blob)
   }, [blob])
 
   return (
     <>
-      <audio src={blob} />
-
+      <div
+        className="absolute h-[70%] top-[15%] w-[2px] bg-stone-50"
+        style={{ left: `${recentAdjustment}%` }}
+      ></div>
       <AudioVisualizer
-        blob={blob.size > 0 ? blob : null}
+        blob={blob.size > 0 && blob.type === 'audio/wav' ? blob : null}
         width={300}
         height={75}
         barWidth={1}

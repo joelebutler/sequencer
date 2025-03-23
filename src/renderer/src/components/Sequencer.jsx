@@ -109,10 +109,10 @@ export function Sequencer() {
             recentAdjustment={recentAdjustment}
             recentInst={recentInst}
           />
-          <div className="bg-red-500 w-[300px] h-[200px]">
-            <div className="bg-blue-800 w-full h-3/4">
-              <label>Waveform</label>
-              <Visualizer blob={blob} />
+          <div className="bg-stone-900 w-[300px] h-[200px]">
+            <div className="relative w-full h-3/4">
+              <label className="text-stone-50 pl-[2%]">Waveform</label>
+              <Visualizer blob={blob} recentAdjustment={recentAdjustment} />
             </div>
             {/* Audio Controller */}
             <div className="flex flex-row justify-between">
@@ -174,6 +174,7 @@ export function Sequencer() {
             globalVol={globalVol}
             registerOneShot={registerOneShot}
             recordedAudio={recordedAudio}
+            setBlob={setBlob}
           />{' '}
         </div>
         <div

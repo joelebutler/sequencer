@@ -18,7 +18,8 @@ function Button({
   setRecentAdjustment,
   globalVol,
   registerOneShot,
-  recordedAudio
+  recordedAudio,
+  setBlob
 }) {
   const [localVolume, setLocalVolume] = useState(100) // Local volume for this button
   const [localPitch, setLocalPitch] = useState(10) // Local pitch for this button
@@ -59,6 +60,7 @@ function Button({
       setLocalPitch(recentPitch)
     }
     if (recentInst === defaultSound && recentAdjustment !== localAdjustment) {
+      console.log(recentAdjustment)
       setLocalAdjustment(recentAdjustment)
     }
   }, [
@@ -75,7 +77,7 @@ function Button({
   // Update sound when recordedAudio changes and this button is the recent instrument
   useEffect(() => {
     if (recentInst === defaultSound && recordedAudio && enabled) {
-      console.log(`Received audio: ${recordedAudio}`)
+      console.log(`Received audio: ${recordedAudio} setBlob={setBlob}`)
       soundRef.current = recordedAudio
     }
   }, [recordedAudio, recentInst, defaultSound, enabled])
@@ -92,10 +94,10 @@ function Button({
     const startTime = Math.max(0, Math.min(duration, duration * (localAdjustment / 100)))
     sound.currentTime = isFinite(startTime) ? startTime : 0
     sound.loop = false
-    sound.volume = sound.volume * (globalVol / 100) * (localVolume / 100)
+    sound.volume = 1 * (globalVol / 100) * (localVolume / 100)
     sound.playbackRate = localPitch / 10
     sound.play()
-  }, [globalVol, localVolume, localPitch, localAdjustment, enabled])
+  }, [globalVol, localVolume, localPitch, localAdjustment, enabled, duration])
 
   const playOneShotFlip = useCallback(() => {
     const sound = soundRef.current
@@ -103,7 +105,7 @@ function Button({
     const startTime = Math.max(0, Math.min(duration, duration * (localAdjustment / 100)))
     sound.currentTime = isFinite(startTime) ? startTime : 0
     sound.loop = false
-    sound.volume = sound.volume * (globalVol / 100) * (localVolume / 100)
+    sound.volume = 1 * (globalVol / 100) * (localVolume / 100)
     sound.playbackRate = localPitch / 10
     sound.play()
   }, [globalVol, localVolume, localPitch, localAdjustment, enabled, duration])
@@ -128,7 +130,6 @@ function Button({
     setRecentVolume(localVolume)
     setRecentPitch(localPitch)
     setRecentAdjustment(localAdjustment)
-  }
 
   return (
     <button
@@ -152,7 +153,8 @@ function Buttons({
   recentAdjustment,
   setRecentAdjustment,
   registerOneShot,
-  recordedAudio
+  recordedAudio,
+  setBlob
 }) {
   return (
     <>
@@ -170,6 +172,7 @@ function Buttons({
         setRecentAdjustment={setRecentAdjustment}
         registerOneShot={registerOneShot}
         recordedAudio={recordedAudio}
+        setBlob={setBlob}
       />
       <Button
         soundID="2"
@@ -185,6 +188,7 @@ function Buttons({
         setRecentAdjustment={setRecentAdjustment}
         registerOneShot={registerOneShot}
         recordedAudio={recordedAudio}
+        setBlob={setBlob}
       />
       <Button
         soundID="3"
@@ -200,6 +204,7 @@ function Buttons({
         setRecentAdjustment={setRecentAdjustment}
         registerOneShot={registerOneShot}
         recordedAudio={recordedAudio}
+        setBlob={setBlob}
       />
       <Button
         soundID="4"
@@ -215,6 +220,7 @@ function Buttons({
         setRecentAdjustment={setRecentAdjustment}
         registerOneShot={registerOneShot}
         recordedAudio={recordedAudio}
+        setBlob={setBlob}
       />
       <Button
         soundID="5"
@@ -230,6 +236,7 @@ function Buttons({
         setRecentAdjustment={setRecentAdjustment}
         registerOneShot={registerOneShot}
         recordedAudio={recordedAudio}
+        setBlob={setBlob}
       />
       <Button
         soundID="6"
@@ -245,6 +252,7 @@ function Buttons({
         setRecentAdjustment={setRecentAdjustment}
         registerOneShot={registerOneShot}
         recordedAudio={recordedAudio}
+        setBlob={setBlob}
       />
     </>
   )
