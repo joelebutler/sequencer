@@ -1,8 +1,9 @@
+/* eslint-disable react/display-name */
 import { Knob, Pointer, Scale } from 'rc-knob'
 import React, { useState, useCallback } from 'react'
 
-const TimingKnob = React.memo(() => {
-  const [value, setValue] = useState(-50)
+const AdjustmentKnob = React.memo(() => {
+  const [value, setValue] = useState(0)
 
   const handleChange = useCallback((newValue) => {
     const roundedValue = Math.round(newValue)
@@ -16,17 +17,25 @@ const TimingKnob = React.memo(() => {
         angleOffset={220}
         angleRange={280}
         steps={10}
-        min={-50}
-        max={50}
+        min={0}
+        max={100}
+        initialValue={0}
         onChange={handleChange}
       >
         <Scale tickWidth={2} tickHeight={2} radius={45} />
         <circle r="35" cx="50" cy="50" fill="#FC5A96" />,
-        <Pointer width={2} height={35} radius={10} type="rect" color="#FC5A96" />
+        <Pointer
+          width={2}
+          height={35}
+          radius={10}
+          type="rect"
+          color="#FC5A96"
+          percentage={value / 100}
+        />
       </Knob>
-      <label>Timing: {value}</label>
+      <label>Offset: {value}</label>
     </div>
   )
 })
 
-export default TimingKnob
+export default AdjustmentKnob

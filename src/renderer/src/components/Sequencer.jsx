@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import Buttons from './Buttons.jsx'
 import GainKnob from './GainKnob.jsx'
 import TempoKnob from './TempoKnob.jsx'
 import PitchKnob from './PitchKnob.jsx'
-import TimingKnob from './TimingKnob.jsx'
+import AdjustmentKnob from './AdjustmentKnob.jsx'
 import GlobalKnob from './GlobalKnob.jsx'
 import Visualizer from './Visualizer.jsx'
 import { FaCircle } from 'react-icons/fa'
@@ -16,7 +16,8 @@ export function Sequencer() {
   const [tempo, setTempo] = useState(60)
   const [globalVol, setGlobalVol] = useState(80)
   const [recentInst, setRecentInst] = useState('') // State to track the most recent instrument
-  const [recentVolume, setRecentVolume] = useState(0.8) // State to track the most recent instrument
+  const [recentVolume, setRecentVolume] = useState(0.8) // State to track the most recent volume
+  const [recentPitch, setRecentPitch] = useState(10) // State to track the most recent pitch
 
   const handleTempoChange = (newTempo) => {
     console.log(newTempo)
@@ -45,8 +46,12 @@ export function Sequencer() {
             recentVolume={recentVolume}
             recentInst={recentInst}
           />
-          <PitchKnob />
-          <TimingKnob />
+          <PitchKnob
+            setRecentPitch={setRecentPitch}
+            recentPitch={recentPitch}
+            recentInst={recentInst}
+          />
+          <AdjustmentKnob />
           <div className="bg-red-500 w-[300px] h-[200px]">
             <div className="bg-blue-800 w-full h-3/4">
               <label>Waveform</label>
@@ -89,6 +94,8 @@ export function Sequencer() {
             recentInst={recentInst}
             recentVolume={recentVolume}
             setRecentVolume={setRecentVolume}
+            recentPitch={recentPitch}
+            setRecentPitch={setRecentPitch}
             globalVol={globalVol}
           />{' '}
         </div>
