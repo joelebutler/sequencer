@@ -1,13 +1,22 @@
 import { Knob, Pointer, Scale } from 'rc-knob'
 import React, { useState, useCallback } from 'react'
+import { debounce } from 'lodash'
 
-const PitchKnob = React.memo(() => {
+const PitchKnob = React.memo(({ onChange }) => {
   const [value, setValue] = useState(-50)
+
+  const debouncedOnChange = useCallback(
+    debounce((newValue) => {
+      onChange(newValue)
+    }, 300),
+    [onChange]
+  )
 
   const handleChange = useCallback((newValue) => {
     const roundedValue = Math.round(newValue)
     setValue(roundedValue)
-  }, [])
+    debouncedOnChange(roundedValue)
+  }, [debouncedOnChange])
 
   return (
     <div className="bg-blue-400 control-knob-zone">
