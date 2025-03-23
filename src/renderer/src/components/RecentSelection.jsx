@@ -2,7 +2,10 @@
 const RecentSelection = ({ recentInst }) => {
   return (
     <label className="absolute left-[20px] top-[10px]">
-      Recent:<span id="recent-inst-label">{recentInst}</span>
+      Active Instrument:
+      <span id="recent-inst-label" className="ml-1 ">
+        {recentInst}
+      </span>
     </label>
   )
 }

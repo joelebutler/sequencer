@@ -10,3 +10,9 @@
 .generalPointer {
   @apply fill-slate-50;
 }
+canvas {
+  @apply border-slate-50;
+  @apply w-[99%];
+  @apply ml-[0.5%];
+  @apply h-full;
+}

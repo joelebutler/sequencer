@@ -4,6 +4,8 @@ import cowbell from '../assets/sounds/cowbell.wav'
 import hi from '../assets/sounds/hi-hat.wav'
 import kick from '../assets/sounds/kick.wav'
 import snare from '../assets/sounds/snare.wav'
+import bell from '../assets/sounds/Bell.wav'
+import clap from '../assets/sounds/Clap.wav'
 
 function Button({
   soundID,
@@ -31,14 +33,18 @@ function Button({
   const soundRef = useRef(null)
 
   useEffect(() => {
-    if (defaultSound === 'cowbell') {
+    if (defaultSound === 'Cowbell') {
       soundRef.current = new Audio(cowbell)
-    } else if (defaultSound === 'hi') {
+    } else if (defaultSound === 'Hi-Hat') {
       soundRef.current = new Audio(hi)
-    } else if (defaultSound === 'kick') {
+    } else if (defaultSound === 'Kick') {
       soundRef.current = new Audio(kick)
-    } else if (defaultSound === 'snare') {
+    } else if (defaultSound === 'Snare') {
       soundRef.current = new Audio(snare)
+    } else if (defaultSound === 'FX') {
+      soundRef.current = new Audio(bell)
+    } else if (defaultSound === 'FX2') {
+      soundRef.current = new Audio(clap)
     } else {
       soundRef.current = new Audio()
     }
@@ -199,7 +205,7 @@ function Buttons({
       />
       <Button
         soundID="3"
-        defaultSound="cowbell"
+        defaultSound="Cowbell"
         setRecentInst={setRecentInst}
         recentInst={recentInst}
         globalVol={globalVol}
@@ -216,7 +222,7 @@ function Buttons({
       />
       <Button
         soundID="4"
-        defaultSound="hi"
+        defaultSound="Hi-Hat"
         setRecentInst={setRecentInst}
         recentInst={recentInst}
         globalVol={globalVol}
@@ -233,7 +239,7 @@ function Buttons({
       />
       <Button
         soundID="5"
-        defaultSound="kick"
+        defaultSound="Snare"
         setRecentInst={setRecentInst}
         recentInst={recentInst}
         globalVol={globalVol}
@@ -250,7 +256,7 @@ function Buttons({
       />
       <Button
         soundID="6"
-        defaultSound="snare"
+        defaultSound="Kick"
         setRecentInst={setRecentInst}
         recentInst={recentInst}
         globalVol={globalVol}
