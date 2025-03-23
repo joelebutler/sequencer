@@ -7,7 +7,7 @@ import AdjustmentKnob from './AdjustmentKnob.jsx'
 import GlobalKnob from './GlobalKnob.jsx'
 import Visualizer from './Visualizer.jsx'
 import { FaCircle } from 'react-icons/fa'
-import { FaCirclePlay, FaCircleUp, FaCircleStop, FaCirclePause } from 'react-icons/fa6'
+import { FaCirclePlay, FaCircleUp, FaCircleStop, FaCirclePause, FaSquare } from 'react-icons/fa6'
 import BeatRow from './BeatRow.jsx'
 import RecentSelection from './RecentSelection.jsx'
 import Metronome from './Metronome.jsx'
@@ -128,7 +128,7 @@ export function Sequencer() {
                     : handleStartRecording
                 }
               >
-                <FaCircle />
+                {recorderControls.isRecording ? <FaSquare/> : <FaCircle/>}
               </button>
               <button className="waveform-control pause-btn">
                 <FaCirclePause />
