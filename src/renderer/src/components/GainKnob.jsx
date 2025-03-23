@@ -1,13 +1,13 @@
 import { Knob, Pointer, Scale } from 'rc-knob'
 import React, { useState, useCallback } from 'react'
 
-const GainKnob = React.memo(() => {
+const GainKnob = React.memo(({ onChange }) => {
   const [value, setValue] = useState(0)
 
   const handleChange = useCallback((newValue) => {
     const roundedValue = Math.round(newValue)
     setValue(roundedValue)
-  })
+  }, [onChange])
 
   return (
     <div className="bg-blue-400 control-knob-zone">

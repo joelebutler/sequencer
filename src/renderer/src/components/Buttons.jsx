@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import cowbell from '../assets/sounds/cowbell.wav'
 import hi from '../assets/sounds/hi-hat.wav'
 import kick from '../assets/sounds/kick.wav'
 import snare from '../assets/sounds/snare.wav'
 
-function Button({ soundID, defaultSound }) {
+function Button({ soundID, defaultSound, globalVol }) {
   const [enabled, toggleEnabled] = useState(false)
   let sound = null
   if (defaultSound === 'cowbell') {
@@ -26,6 +26,7 @@ function Button({ soundID, defaultSound }) {
   const playOneShot = () => {
     sound.currentTime = 0
     sound.loop = false
+    sound.volume = sound.volume * (globalVol/100)
     sound.play()
   }
   const handleClick = () => {
@@ -44,15 +45,15 @@ function Button({ soundID, defaultSound }) {
   )
 }
 
-function Buttons() {
+function Buttons({ globalVol }) {
   return (
     <>
-      <Button soundID="1" defaultSound="FX" />
-      <Button soundID="2" defaultSound="FX2" />
-      <Button soundID="3" defaultSound="cowbell" />
-      <Button soundID="4" defaultSound="hi" />
-      <Button soundID="5" defaultSound="kick" />
-      <Button soundID="6" defaultSound="snare" />
+      <Button soundID="1" defaultSound="FX" globalVol={globalVol} />
+      <Button soundID="2" defaultSound="FX2" globalVol={globalVol} />
+      <Button soundID="3" defaultSound="cowbell" globalVol={globalVol} />
+      <Button soundID="4" defaultSound="hi" globalVol={globalVol} />
+      <Button soundID="5" defaultSound="kick" globalVol={globalVol} />
+      <Button soundID="6" defaultSound="snare" globalVol={globalVol} />
     </>
   )
 }

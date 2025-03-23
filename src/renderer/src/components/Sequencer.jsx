@@ -13,9 +13,15 @@ import Metronome from './Metronome.jsx'
 
 export function Sequencer() {
   const [tempo, setTempo] = useState(60)
+  const [globalVol, setGlobalVol] = useState(80);
 
   const handleTempoChange = (newTempo) => {
+    console.log(newTempo)
     setTempo(newTempo)
+  }
+  const handleGlobalVolChange = (newGlobalVol) => {
+    // console.log(newGlobalVol)
+    setGlobalVol(newGlobalVol)
   }
 
   return (
@@ -56,7 +62,7 @@ export function Sequencer() {
         </div>
         <div id="global-controls" className=" w-[30vw] flex flex-row justify-around items-center">
           <TempoKnob onChange={handleTempoChange} />
-          <GlobalKnob />
+          <GlobalKnob onChange={handleGlobalVolChange} />
         </div>
       </div>
       <div id="sequencing-view" className="flex flex-row">
@@ -67,7 +73,7 @@ export function Sequencer() {
           <div className="beat-pos">
             <span>&nbsp;</span>
           </div>
-          <Buttons />
+          <Buttons globalVol={globalVol} />
         </div>
         <div
           id="beat-button-zone"
