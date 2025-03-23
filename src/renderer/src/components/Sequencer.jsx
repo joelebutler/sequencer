@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import Buttons from './Buttons.jsx'
 import GainKnob from './GainKnob.jsx'
 import TempoKnob from './TempoKnob.jsx'
@@ -20,6 +20,24 @@ export function Sequencer() {
   const [recentPitch, setRecentPitch] = useState(10) // State to track the most recent pitch
   const [currentCol, setCurrentCol] = useState(0)
   const [recentAdjustment, setRecentAdjustment] = useState(0) // State to track the most recent adjustment
+
+  const storeOneShot = useRef({})
+
+  // Function to register a playOneShot function for a specific soundID
+  const registerOneShot = (soundID, playOneShot) => {
+    storeOneShot.current[soundID] = playOneShot
+  }
+
+  const handleGrabHit = (soundID) => {
+    if (soundID) {
+      storeOneShot.current[soundID]()
+    }
+    document.querySelectorAll('.inst-button').forEach((button) => {
+      if (button.dataset.soundId === soundID) {
+        button.callOneShot(soundID)
+      }
+    })
+  }
 
   const handleTempoChange = (newTempo) => {
     // console.log(newTempo)
@@ -106,6 +124,7 @@ export function Sequencer() {
             setRecentAdjustment={setRecentAdjustment}
             globalVol={globalVol}
             currentCol={currentCol}
+            registerOneShot={registerOneShot}
           />{' '}
         </div>
         <div
@@ -131,12 +150,12 @@ export function Sequencer() {
               <span>15</span>
               <span>16</span>
             </div>
-            <BeatRow soundID="1" />
-            <BeatRow soundID="2" />
-            <BeatRow soundID="3" />
-            <BeatRow soundID="4" />
-            <BeatRow soundID="5" />
-            <BeatRow soundID="6" />
+            <BeatRow soundID="1" currentCol={currentCol} handleGrabHit={handleGrabHit} />
+            <BeatRow soundID="2" currentCol={currentCol} handleGrabHit={handleGrabHit} />
+            <BeatRow soundID="3" currentCol={currentCol} handleGrabHit={handleGrabHit} />
+            <BeatRow soundID="4" currentCol={currentCol} handleGrabHit={handleGrabHit} />
+            <BeatRow soundID="5" currentCol={currentCol} handleGrabHit={handleGrabHit} />
+            <BeatRow soundID="6" currentCol={currentCol} handleGrabHit={handleGrabHit} />
           </div>
         </div>
       </div>

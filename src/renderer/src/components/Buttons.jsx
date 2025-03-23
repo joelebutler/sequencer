@@ -17,13 +17,15 @@ function Button({
   recentAdjustment,
   setRecentAdjustment,
   globalVol,
-  currentCol
+  currentCol,
+  registerOneShot
 }) {
   const [localVolume, setLocalVolume] = useState(100) // Local volume for this button
   const [localPitch, setLocalPitch] = useState(10) // Local pitch for this button
   const [localAdjustment, setLocalAdjustment] = useState(0) // Local adjustment for this button
   const [enabled, toggleEnabled] = useState(false)
   const [recent, setRecent] = useState(false)
+  const [duration, setDuration] = useState(0)
 
   let sound = null
   if (defaultSound === 'cowbell') {
@@ -65,21 +67,45 @@ function Button({
   ])
 
   const playOneShot = useCallback(() => {
-    console.log(Math.round(localAdjustment / 100))
+    // for some reason, enabled is always flipped here. i do not know why, but it works as
+    // a disabled instead so i check for that
+    if (!sound || !enabled) return
     const startTime = Math.max(
       0,
       Math.min(sound.duration, sound.duration * (localAdjustment / 100))
     )
+    sound.onloadeddata = () => {
+      setDuration(sound.duration)
+    }
     sound.currentTime = isFinite(startTime) ? startTime : 0
     sound.loop = false
     sound.volume = sound.volume * (globalVol / 100) * (localVolume / 100)
     sound.playbackRate = localPitch / 10
     sound.play()
-  }, [globalVol, localVolume, localPitch, sound, localAdjustment])
+  }, [globalVol, localVolume, localPitch, sound, localAdjustment, enabled])
+
+  const playOneShotFlip = useCallback(() => {
+    // for some reason, enabled is always flipped here from the click context
+    // i do not know why, but it works as a disabled instead so i check-a for that
+    // (this is the same as playOneShot but with enabled flipped)
+    if (!sound || enabled) return
+    const startTime = Math.max(0, Math.min(duration, duration * (localAdjustment / 100)))
+    sound.currentTime = isFinite(startTime) ? startTime : 0
+    sound.loop = false
+    sound.volume = sound.volume * (globalVol / 100) * (localVolume / 100)
+    sound.playbackRate = localPitch / 10
+    sound.play()
+  }, [globalVol, localVolume, localPitch, sound, localAdjustment, enabled, duration])
+
+  useEffect(() => {
+    if (registerOneShot) {
+      registerOneShot(soundID, playOneShot) // Register playOneShot with registerOneShot
+    }
+  }, [registerOneShot, soundID, playOneShot])
 
   const handleClick = () => {
     toggleEnabled(!enabled)
-    playOneShot()
+    playOneShotFlip(!enabled)
     const buttons = document.querySelectorAll('.inst-button')
 
     buttons.forEach((button) => {
@@ -92,12 +118,6 @@ function Button({
     setRecentPitch(localPitch)
     setRecentAdjustment(localAdjustment)
   }
-
-  useEffect(() => {
-    if (enabled && currentCol === parseInt(soundID)) {
-      playOneShot()
-    }
-  }, [currentCol, enabled, soundID, playOneShot])
 
   return (
     <button
@@ -120,7 +140,8 @@ function Buttons({
   setRecentPitch,
   recentAdjustment,
   setRecentAdjustment,
-  currentCol
+  currentCol,
+  registerOneShot
 }) {
   return (
     <>
@@ -137,6 +158,7 @@ function Buttons({
         recentAdjustment={recentAdjustment}
         setRecentAdjustment={setRecentAdjustment}
         currentCol={currentCol}
+        registerOneShot={registerOneShot}
       />
       <Button
         soundID="2"
@@ -151,6 +173,7 @@ function Buttons({
         recentAdjustment={recentAdjustment}
         setRecentAdjustment={setRecentAdjustment}
         currentCol={currentCol}
+        registerOneShot={registerOneShot}
       />
       <Button
         soundID="3"
@@ -165,6 +188,7 @@ function Buttons({
         recentAdjustment={recentAdjustment}
         setRecentAdjustment={setRecentAdjustment}
         currentCol={currentCol}
+        registerOneShot={registerOneShot}
       />
       <Button
         soundID="4"
@@ -179,6 +203,7 @@ function Buttons({
         recentAdjustment={recentAdjustment}
         setRecentAdjustment={setRecentAdjustment}
         currentCol={currentCol}
+        registerOneShot={registerOneShot}
       />
       <Button
         soundID="5"
@@ -193,6 +218,7 @@ function Buttons({
         recentAdjustment={recentAdjustment}
         setRecentAdjustment={setRecentAdjustment}
         currentCol={currentCol}
+        registerOneShot={registerOneShot}
       />
       <Button
         soundID="6"
@@ -207,6 +233,7 @@ function Buttons({
         recentAdjustment={recentAdjustment}
         setRecentAdjustment={setRecentAdjustment}
         currentCol={currentCol}
+        registerOneShot={registerOneShot}
       />
     </>
   )
