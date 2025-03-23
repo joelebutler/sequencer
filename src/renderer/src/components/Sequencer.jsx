@@ -172,7 +172,6 @@ export function Sequencer() {
             recentAdjustment={recentAdjustment}
             setRecentAdjustment={setRecentAdjustment}
             globalVol={globalVol}
-            currentCol={currentCol}
             registerOneShot={registerOneShot}
             recordedAudio={recordedAudio}
             setBlob={setBlob}
@@ -201,12 +200,12 @@ export function Sequencer() {
               <span>15</span>
               <span>16</span>
             </div>
-            <BeatRow soundID="1" currentCol={currentCol} handleGrabHit={handleGrabHit} />
-            <BeatRow soundID="2" currentCol={currentCol} handleGrabHit={handleGrabHit} />
-            <BeatRow soundID="3" currentCol={currentCol} handleGrabHit={handleGrabHit} />
-            <BeatRow soundID="4" currentCol={currentCol} handleGrabHit={handleGrabHit} />
-            <BeatRow soundID="5" currentCol={currentCol} handleGrabHit={handleGrabHit} />
-            <BeatRow soundID="6" currentCol={currentCol} handleGrabHit={handleGrabHit} />
+            <BeatRow soundID="1" handleGrabHit={handleGrabHit} />
+            <BeatRow soundID="2" handleGrabHit={handleGrabHit} />
+            <BeatRow soundID="3" handleGrabHit={handleGrabHit} />
+            <BeatRow soundID="4" handleGrabHit={handleGrabHit} />
+            <BeatRow soundID="5" handleGrabHit={handleGrabHit} />
+            <BeatRow soundID="6" handleGrabHit={handleGrabHit} />
           </div>
         </div>
       </div>
