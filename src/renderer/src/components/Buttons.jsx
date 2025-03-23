@@ -60,6 +60,7 @@ function Button({
       setLocalPitch(recentPitch)
     }
     if (recentInst === defaultSound && recentAdjustment !== localAdjustment) {
+      console.log(recentAdjustment)
       setLocalAdjustment(recentAdjustment)
     }
   }, [
@@ -90,7 +91,7 @@ function Button({
     sound.volume = sound.volume * (globalVol / 100) * (localVolume / 100)
     sound.playbackRate = localPitch / 10
     sound.play()
-  }, [globalVol, localVolume, localPitch, localAdjustment, enabled])
+  }, [globalVol, localVolume, localPitch, localAdjustment, enabled, duration])
 
   const playOneShotFlip = useCallback(() => {
     const sound = soundRef.current
@@ -98,7 +99,7 @@ function Button({
     const startTime = Math.max(0, Math.min(duration, duration * (localAdjustment / 100)))
     sound.currentTime = isFinite(startTime) ? startTime : 0
     sound.loop = false
-    sound.volume = sound.volume * (globalVol / 100) * (localVolume / 100)
+    sound.volume = 1 * (globalVol / 100) * (localVolume / 100)
     sound.playbackRate = localPitch / 10
     sound.play()
   }, [globalVol, localVolume, localPitch, localAdjustment, enabled, duration])
