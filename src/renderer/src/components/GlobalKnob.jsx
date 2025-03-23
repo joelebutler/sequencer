@@ -45,7 +45,7 @@ const GlobalKnob = React.memo(({ onChange }) => {
           percentage={value / 100}
         />
       </Knob>
-      <label>Global Vol: {value}</label>
+      <label>Global Volume</label>
     </div>
   )
 })

@@ -46,7 +46,7 @@ const TempoKnob = React.memo(({ onChange }) => {
           percentage={(value - 60) / 120} // Ensure the pointer matches the knob value
         />
       </Knob>
-      <label>Tempo: {value}</label>
+      <label>Tempo</label>
     </div>
   )
 })

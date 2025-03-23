@@ -85,34 +85,41 @@ export function Sequencer() {
         paused={paused}
         stopped={stopped}
       />
-      <div className="flex flex-row justify-between p-[20px]">
+      <div className="flex flex-row justify-between p-[20px] border-slate-900 border-b-[3px] mb-[10px]">
         <h2>Michaeland TR-909</h2>
         <h2>A sequencer by Joel Butler & Michael Vitale</h2>
       </div>
-      <div id="controls" className="flex flex-row h-[25vh]">
+      <div
+        id="controls"
+        className="flex flex-row h-fit min-h-[25vh] border-slate-900 border-b-[3px] pb-[10px]  justify-around flex-wrap md:flex-nowrap"
+      >
         <div
           id="active-controls"
-          className="flex-grow flex flex-row justify-around items-center relative"
+          className="flex-grow flex flex-row justify-around flex-wrap h-fit items-center relative"
         >
-          <RecentSelection recentInst={recentInst} /> {/* Pass recentInst as a prop */}
-          <GainKnob
-            setRecentVolume={setRecentVolume}
-            recentVolume={recentVolume}
-            recentInst={recentInst}
-          />
-          <PitchKnob
-            setRecentPitch={setRecentPitch}
-            recentPitch={recentPitch}
-            recentInst={recentInst}
-          />
-          <AdjustmentKnob
-            setRecentAdjustment={setRecentAdjustment}
-            recentAdjustment={recentAdjustment}
-            recentInst={recentInst}
-          />
-          <div className="bg-stone-900 w-[400px] h-[200px]">
+          <div className="flex-grow flex flex-row justify-around items-center relative h-full">
+            <h2 className="top-[15px] w-full text-center">Active Instrument Controls</h2>
+            <div className="flex-grow flex flex-row justify-around items-center relative h-full">
+              <GainKnob
+                setRecentVolume={setRecentVolume}
+                recentVolume={recentVolume}
+                recentInst={recentInst}
+              />
+              <PitchKnob
+                setRecentPitch={setRecentPitch}
+                recentPitch={recentPitch}
+                recentInst={recentInst}
+              />
+              <AdjustmentKnob
+                setRecentAdjustment={setRecentAdjustment}
+                recentAdjustment={recentAdjustment}
+                recentInst={recentInst}
+              />
+            </div>
+          </div>
+          <div className="bg-stone-900 relative w-[400px] h-[200px] rounded-lg p-5">
+            <RecentSelection recentInst={recentInst}></RecentSelection>
             <div className="relative w-full h-3/4">
-              <label className="text-stone-50 pl-[1%] absolute top-0 left-0">Waveform</label>
               <Visualizer blob={blob} recentAdjustment={recentAdjustment} />
             </div>
             {/* Audio Controller */}
@@ -150,7 +157,11 @@ export function Sequencer() {
             </div>
           </div>
         </div>
-        <div id="global-controls" className=" w-[30vw] flex flex-row justify-around items-center">
+        <div
+          id="global-controls"
+          className=" w-[30vw] flex flex-row justify-around items-center relative"
+        >
+          <h2 className="absolute top-[15px] w-full text-center">Global Controls</h2>
           <TempoKnob onChange={handleTempoChange} />
           <GlobalKnob onChange={handleGlobalVolChange} />
         </div>

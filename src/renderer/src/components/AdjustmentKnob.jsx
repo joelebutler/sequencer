@@ -45,7 +45,7 @@ const AdjustmentKnob = React.memo(({ setRecentAdjustment, recentAdjustment, rece
           percentage={value / 100} // Map value to percentage
         />
       </Knob>
-      <label>Adjustment: {value}</label>
+      <label>Start Position</label>
     </div>
   )
 })

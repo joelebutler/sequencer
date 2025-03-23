@@ -56,7 +56,7 @@ const PitchKnob = React.memo(({ setRecentPitch, recentPitch, recentInst, onChang
           percentage={(value - 5) / 15}
         />
       </Knob>
-      <label>Speed {value / 10}</label>
+      <label>Playback Rate</label>
     </div>
   )
 })

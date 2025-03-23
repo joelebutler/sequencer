@@ -57,7 +57,7 @@ const GainKnob = React.memo(({ setRecentVolume, recentVolume, recentInst, onChan
           percentage={value / 100}
         />
       </Knob>
-      <label>Volume: {value}</label>
+      <label>Volume</label>
     </div>
   )
 })
