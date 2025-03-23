@@ -5,9 +5,18 @@ import hi from '../assets/sounds/hi-hat.wav'
 import kick from '../assets/sounds/kick.wav'
 import snare from '../assets/sounds/snare.wav'
 
-function Button({ soundID, defaultSound, setRecentInst, globalVol }) {
+function Button({
+  soundID,
+  defaultSound,
+  setRecentInst,
+  recentInst,
+  recentVolume,
+  setRecentVolume,
+  globalVol
+}) {
   const [enabled, toggleEnabled] = useState(false)
   const [recent, setRecent] = useState(false)
+  const [localVolume, setLocalVolume] = useState(100)
   let sound = null
   if (defaultSound === 'cowbell') {
     sound = new Audio(cowbell)
@@ -24,10 +33,14 @@ function Button({ soundID, defaultSound, setRecentInst, globalVol }) {
   sound.loop = 'false'
   sound.preservesPitch = 'false'
 
+  if (recentInst === defaultSound && recentVolume !== localVolume) {
+    setLocalVolume(recentVolume)
+  }
+
   const playOneShot = () => {
     sound.currentTime = 0
     sound.loop = false
-    sound.volume = sound.volume * (globalVol/100)
+    sound.volume = sound.volume * (globalVol / 100) * (localVolume / 100)
     sound.play()
   }
   const handleClick = () => {
@@ -41,6 +54,7 @@ function Button({ soundID, defaultSound, setRecentInst, globalVol }) {
 
     setRecent(true)
     setRecentInst(defaultSound)
+    setRecentVolume(localVolume)
   }
 
   useEffect(() => {}, [])
@@ -56,24 +70,62 @@ function Button({ soundID, defaultSound, setRecentInst, globalVol }) {
   )
 }
 
-function Buttons({ setRecentInst, globalVol }) {
+function Buttons({ setRecentInst, recentInst, globalVol, recentVolume, setRecentVolume }) {
   return (
     <>
-      <Button soundID="1" defaultSound="FX" setRecentInst={setRecentInst} globalVol={globalVol} />
-      <Button soundID="2" defaultSound="FX2" setRecentInst={setRecentInst} globalVol={globalVol} />
+      <Button
+        soundID="1"
+        defaultSound="FX"
+        setRecentInst={setRecentInst}
+        recentInst={recentInst}
+        globalVol={globalVol}
+        recentVolume={recentVolume}
+        setRecentVolume={setRecentVolume}
+      />
+      <Button
+        soundID="2"
+        defaultSound="FX2"
+        setRecentInst={setRecentInst}
+        recentInst={recentInst}
+        globalVol={globalVol}
+        recentVolume={recentVolume}
+        setRecentVolume={setRecentVolume}
+      />
       <Button
         soundID="3"
         defaultSound="cowbell"
         setRecentInst={setRecentInst}
+        recentInst={recentInst}
         globalVol={globalVol}
+        recentVolume={recentVolume}
+        setRecentVolume={setRecentVolume}
       />
-      <Button soundID="4" defaultSound="hi" setRecentInst={setRecentInst} globalVol={globalVol} />
-      <Button soundID="5" defaultSound="kick" setRecentInst={setRecentInst} globalVol={globalVol} />
+      <Button
+        soundID="4"
+        defaultSound="hi"
+        setRecentInst={setRecentInst}
+        recentInst={recentInst}
+        globalVol={globalVol}
+        recentVolume={recentVolume}
+        setRecentVolume={setRecentVolume}
+      />
+      <Button
+        soundID="5"
+        defaultSound="kick"
+        setRecentInst={setRecentInst}
+        recentInst={recentInst}
+        globalVol={globalVol}
+        recentVolume={recentVolume}
+        setRecentVolume={setRecentVolume}
+      />
       <Button
         soundID="6"
         defaultSound="snare"
         setRecentInst={setRecentInst}
+        recentInst={recentInst}
         globalVol={globalVol}
+        recentVolume={recentVolume}
+        setRecentVolume={setRecentVolume}
       />
     </>
   )
