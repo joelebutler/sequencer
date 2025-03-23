@@ -23,7 +23,8 @@ const Visualizer = ({ blob, recentAdjustment }) => {
         height={75}
         barWidth={1}
         gap={0}
-        barColor={'#f76565'}
+        className={'visualizer'}
+        barColor={'#f1f5f9'}
       />
     </>
   )

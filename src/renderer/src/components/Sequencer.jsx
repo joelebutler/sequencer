@@ -109,9 +109,9 @@ export function Sequencer() {
             recentAdjustment={recentAdjustment}
             recentInst={recentInst}
           />
-          <div className="bg-stone-900 w-[300px] h-[200px]">
+          <div className="bg-stone-900 w-[400px] h-[200px]">
             <div className="relative w-full h-3/4">
-              <label className="text-stone-50 pl-[2%]">Waveform</label>
+              <label className="text-stone-50 pl-[1%] absolute top-0 left-0">Waveform</label>
               <Visualizer blob={blob} recentAdjustment={recentAdjustment} />
             </div>
             {/* Audio Controller */}
