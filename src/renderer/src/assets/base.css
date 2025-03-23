@@ -60,9 +60,13 @@ body {
 }
 .control-knob-zone {
   @apply h-[125px];
-  @apply w-[100px];
+  @apply w-[120px];
   @apply text-center;
   @apply font-bold;
+  @apply flex;
+  @apply flex-col;
+  @apply items-center;
+  @apply justify-center;
 }
 .waveform-control {
   @apply bg-yellow-200;

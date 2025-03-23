@@ -17,7 +17,6 @@ function Button({
   recentAdjustment,
   setRecentAdjustment,
   globalVol,
-  currentCol,
   registerOneShot,
   recordedAudio
 }) {
@@ -28,6 +27,7 @@ function Button({
   const [recent, setRecent] = useState(false)
   const [duration, setDuration] = useState(0)
   const soundRef = useRef(null)
+  const [soundName, setSoundName] = useState(defaultSound)
 
   useEffect(() => {
     if (defaultSound === 'cowbell') {
@@ -74,11 +74,17 @@ function Button({
 
   // Update sound when recordedAudio changes and this button is the recent instrument
   useEffect(() => {
-    if (recentInst === defaultSound && recordedAudio) {
+    if (recentInst === defaultSound && recordedAudio && enabled) {
       console.log(`Received audio: ${recordedAudio}`)
       soundRef.current = recordedAudio
     }
-  }, [recordedAudio, recentInst, defaultSound])
+  }, [recordedAudio, recentInst, defaultSound, enabled])
+
+  useEffect(() => {
+    if (recentInst === defaultSound && recordedAudio && enabled) {
+      setSoundName(`Custom ${soundID}`)
+    }
+  }, [recordedAudio])
 
   const playOneShot = useCallback(() => {
     const sound = soundRef.current
@@ -124,19 +130,13 @@ function Button({
     setRecentAdjustment(localAdjustment)
   }
 
-  useEffect(() => {
-    if (enabled && currentCol === parseInt(soundID)) {
-      playOneShot()
-    }
-  }, [currentCol, enabled, soundID, playOneShot])
-
   return (
     <button
       className={`inst-button ${enabled ? 'active-inst' : ''} ${recent ? 'recent-inst' : ''}`}
       onClick={handleClick}
       id={'sound-' + soundID}
     >
-      {defaultSound}
+      {soundName}
     </button>
   )
 }
@@ -151,7 +151,6 @@ function Buttons({
   setRecentPitch,
   recentAdjustment,
   setRecentAdjustment,
-  currentCol,
   registerOneShot,
   recordedAudio
 }) {
@@ -169,7 +168,6 @@ function Buttons({
         setRecentPitch={setRecentPitch}
         recentAdjustment={recentAdjustment}
         setRecentAdjustment={setRecentAdjustment}
-        currentCol={currentCol}
         registerOneShot={registerOneShot}
         recordedAudio={recordedAudio}
       />
@@ -185,7 +183,6 @@ function Buttons({
         setRecentPitch={setRecentPitch}
         recentAdjustment={recentAdjustment}
         setRecentAdjustment={setRecentAdjustment}
-        currentCol={currentCol}
         registerOneShot={registerOneShot}
         recordedAudio={recordedAudio}
       />
@@ -201,7 +198,6 @@ function Buttons({
         setRecentPitch={setRecentPitch}
         recentAdjustment={recentAdjustment}
         setRecentAdjustment={setRecentAdjustment}
-        currentCol={currentCol}
         registerOneShot={registerOneShot}
         recordedAudio={recordedAudio}
       />
@@ -217,7 +213,6 @@ function Buttons({
         setRecentPitch={setRecentPitch}
         recentAdjustment={recentAdjustment}
         setRecentAdjustment={setRecentAdjustment}
-        currentCol={currentCol}
         registerOneShot={registerOneShot}
         recordedAudio={recordedAudio}
       />
@@ -233,7 +228,6 @@ function Buttons({
         setRecentPitch={setRecentPitch}
         recentAdjustment={recentAdjustment}
         setRecentAdjustment={setRecentAdjustment}
-        currentCol={currentCol}
         registerOneShot={registerOneShot}
         recordedAudio={recordedAudio}
       />
@@ -249,7 +243,6 @@ function Buttons({
         setRecentPitch={setRecentPitch}
         recentAdjustment={recentAdjustment}
         setRecentAdjustment={setRecentAdjustment}
-        currentCol={currentCol}
         registerOneShot={registerOneShot}
         recordedAudio={recordedAudio}
       />
