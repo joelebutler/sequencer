@@ -43,6 +43,9 @@ function Button({
   sound.preload = 'auto'
   sound.loop = 'false'
   sound.preservesPitch = 'false'
+  sound.onloadeddata = () => {
+    setDuration(sound.duration)
+  }
 
   // Update local values when this button becomes the recent instrument
   useEffect(() => {
@@ -70,13 +73,7 @@ function Button({
     // for some reason, enabled is always flipped here. i do not know why, but it works as
     // a disabled instead so i check for that
     if (!sound || !enabled) return
-    const startTime = Math.max(
-      0,
-      Math.min(sound.duration, sound.duration * (localAdjustment / 100))
-    )
-    sound.onloadeddata = () => {
-      setDuration(sound.duration)
-    }
+    const startTime = Math.max(0, Math.min(duration, duration * (localAdjustment / 100)))
     sound.currentTime = isFinite(startTime) ? startTime : 0
     sound.loop = false
     sound.volume = sound.volume * (globalVol / 100) * (localVolume / 100)
