@@ -5,7 +5,7 @@ import hi from '../assets/sounds/hi-hat.wav'
 import kick from '../assets/sounds/kick.wav'
 import snare from '../assets/sounds/snare.wav'
 
-function Button({ soundID, defaultSound }) {
+function Button({ soundID, defaultSound, setRecentInst }) {
   const [enabled, toggleEnabled] = useState(false)
   const [recent, setRecent] = useState(false)
   let sound = null
@@ -39,6 +39,7 @@ function Button({ soundID, defaultSound }) {
     })
 
     setRecent(true)
+    setRecentInst(defaultSound)
   }
 
   useEffect(() => {}, [])
@@ -54,15 +55,15 @@ function Button({ soundID, defaultSound }) {
   )
 }
 
-function Buttons() {
+function Buttons({ setRecentInst }) {
   return (
     <>
-      <Button soundID="1" defaultSound="FX" />
-      <Button soundID="2" defaultSound="FX2" />
-      <Button soundID="3" defaultSound="cowbell" />
-      <Button soundID="4" defaultSound="hi" />
-      <Button soundID="5" defaultSound="kick" />
-      <Button soundID="6" defaultSound="snare" />
+      <Button soundID="1" defaultSound="FX" setRecentInst={setRecentInst} />
+      <Button soundID="2" defaultSound="FX2" setRecentInst={setRecentInst} />
+      <Button soundID="3" defaultSound="cowbell" setRecentInst={setRecentInst} />
+      <Button soundID="4" defaultSound="hi" setRecentInst={setRecentInst} />
+      <Button soundID="5" defaultSound="kick" setRecentInst={setRecentInst} />
+      <Button soundID="6" defaultSound="snare" setRecentInst={setRecentInst} />
     </>
   )
 }

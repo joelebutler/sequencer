@@ -9,10 +9,12 @@ import Visualizer from './Visualizer.jsx'
 import { FaCircle } from 'react-icons/fa'
 import { FaCirclePlay, FaCircleUp, FaCircleStop, FaCirclePause } from 'react-icons/fa6'
 import BeatRow from './BeatRow.jsx'
+import RecentSelection from './RecentSelection.jsx'
 import Metronome from './Metronome.jsx'
 
 export function Sequencer() {
   const [tempo, setTempo] = useState(60)
+  const [recentInst, setRecentInst] = useState('') // State to track the most recent instrument
 
   const handleTempoChange = (newTempo) => {
     setTempo(newTempo)
@@ -30,9 +32,7 @@ export function Sequencer() {
           id="active-controls"
           className="flex-grow flex flex-row justify-around items-center relative"
         >
-          <label className="absolute left-[10px] top-[10px]">
-            Recent:<span id="recent-inst-label"></span>
-          </label>
+          <RecentSelection recentInst={recentInst} /> {/* Pass recentInst as a prop */}
           <GainKnob />
           <PitchKnob />
           <TimingKnob />
@@ -73,7 +73,7 @@ export function Sequencer() {
           <div className="beat-pos">
             <span>&nbsp;</span>
           </div>
-          <Buttons />
+          <Buttons setRecentInst={setRecentInst} /> {/* Pass setRecentInst as a prop */}
         </div>
         <div
           id="beat-button-zone"
