@@ -7,6 +7,9 @@
 .generalKnob circle {
   @apply fill-slate-800;
 }
+.generalKnob:active {
+  @apply scale-105;
+}
 .generalPointer {
   @apply fill-slate-50;
 }
@@ -15,4 +18,13 @@ canvas {
   @apply w-[99%];
   @apply ml-[0.5%];
   @apply h-full;
+}
+.waveform-control {
+  @apply rounded-lg;
+  @apply bg-stone-100;
+  @apply p-[10px];
+}
+.waveform-control:hover {
+  @apply scale-105;
+  @apply bg-stone-200;
 }

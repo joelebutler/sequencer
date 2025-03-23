@@ -23,7 +23,7 @@ export function Sequencer() {
   const [recentAdjustment, setRecentAdjustment] = useState(0) // State to track the most recent adjustment
   const [recordedAudio, setRecordedAudio] = useState(null)
   const [paused, setPaused] = useState(false)
-  const [stopped, setStopped] = useState(false)
+  const [stopped, setStopped] = useState(true)
   const [blob, setBlob] = useState(new Blob())
 
   const storeOneShot = useRef({})
@@ -97,7 +97,7 @@ export function Sequencer() {
           id="active-controls"
           className="flex-grow flex flex-row justify-around flex-wrap h-fit items-center relative"
         >
-          <div className="flex-grow flex flex-row justify-around items-center relative h-full">
+          <div className="flex-grow flex flex-row flex-wrap">
             <h2 className="top-[15px] w-full text-center">Active Instrument Controls</h2>
             <div className="flex-grow flex flex-row justify-around items-center relative h-full">
               <GainKnob
@@ -136,9 +136,6 @@ export function Sequencer() {
               >
                 {recorderControls.isRecording ? <FaSquare /> : <FaCircle />}
               </button>
-              <button className="waveform-control pause-btn">
-                <FaCirclePause />
-              </button>
               <button
                 onClick={function () {
                   setPaused(false)
@@ -151,19 +148,22 @@ export function Sequencer() {
               <button onClick={() => setStopped(true)} className="waveform-control stop-btn">
                 <FaCircleStop />
               </button>
-              <button className="waveform-control upload-btn">
-                <FaCircleUp />
+              <button className="waveform-control pause-btn">
+                <FaCirclePause />
               </button>
             </div>
           </div>
         </div>
-        <div
-          id="global-controls"
-          className=" w-[30vw] flex flex-row justify-around items-center relative"
-        >
-          <h2 className="absolute top-[15px] w-full text-center">Global Controls</h2>
-          <TempoKnob onChange={handleTempoChange} />
-          <GlobalKnob onChange={handleGlobalVolChange} />
+
+        <div className="flex-grow flex flex-col flex-wrap">
+          <h2 className="relative top-[15px] w-full text-center">Global Controls</h2>
+          <div
+            id="global-controls"
+            className="flex-grow flex flex-row justify-around flex-wrap h-fit items-center relative"
+          >
+            <TempoKnob onChange={handleTempoChange} />
+            <GlobalKnob onChange={handleGlobalVolChange} />
+          </div>
         </div>
       </div>
       <div id="sequencing-view" className="flex flex-row">
