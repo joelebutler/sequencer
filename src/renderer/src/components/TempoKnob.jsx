@@ -23,7 +23,7 @@ const TempoKnob = React.memo(({ onChange }) => {
   )
 
   return (
-    <div className="bg-blue-400 control-knob-zone">
+    <div className="control-knob-zone">
       <Knob
         size={100}
         angleOffset={220}
@@ -32,16 +32,17 @@ const TempoKnob = React.memo(({ onChange }) => {
         min={60}
         max={180}
         initialValue={120}
+        className={'generalKnob'}
         onChange={handleChange}
       >
         <Scale tickWidth={2} tickHeight={2} radius={45} />
         <circle r="35" cx="50" cy="50" fill="#FC5A96" />
         <Pointer
-          width={2}
-          height={35}
-          radius={10}
+          width={5}
+          height={25}
+          radius={20}
           type="rect"
-          color="#FC5A96"
+          className={'generalPointer'}
           percentage={(value - 60) / 120} // Ensure the pointer matches the knob value
         />
       </Knob>
