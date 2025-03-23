@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect, useCallback, useRef } from 'react'
-import cowbell from '../assets/sounds/cowbell.wav'
-import hi from '../assets/sounds/hi-hat.wav'
-import kick from '../assets/sounds/kick.wav'
-import snare from '../assets/sounds/snare.wav'
+import cowbell from '../assets/sounds/Cowbell.wav'
+import hi from '../assets/sounds/Hi-hat.wav'
+import kick from '../assets/sounds/Kick.wav'
+import snare from '../assets/sounds/Snare.wav'
 import bell from '../assets/sounds/Bell.wav'
 import clap from '../assets/sounds/Clap.wav'
 
@@ -19,6 +19,7 @@ function Button({
   recentAdjustment,
   setRecentAdjustment,
   globalVol,
+  currentCol,
   registerOneShot,
   recordedAudio,
   setBlob
@@ -95,6 +96,7 @@ function Button({
   }, [recordedAudio])
 
   const playOneShot = useCallback(() => {
+    console.log('oneshot!')
     const sound = soundRef.current
     if (!sound || !enabled) return
     const startTime = Math.max(0, Math.min(duration, duration * (localAdjustment / 100)))

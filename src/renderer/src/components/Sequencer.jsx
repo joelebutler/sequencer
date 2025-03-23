@@ -34,6 +34,7 @@ export function Sequencer() {
   }
 
   const handleGrabHit = (soundID) => {
+    console.log(soundID)
     if (soundID) {
       storeOneShot.current[soundID]()
     }
@@ -200,12 +201,12 @@ export function Sequencer() {
               <span>15</span>
               <span>16</span>
             </div>
-            <BeatRow soundID="1" handleGrabHit={handleGrabHit} />
-            <BeatRow soundID="2" handleGrabHit={handleGrabHit} />
-            <BeatRow soundID="3" handleGrabHit={handleGrabHit} />
-            <BeatRow soundID="4" handleGrabHit={handleGrabHit} />
-            <BeatRow soundID="5" handleGrabHit={handleGrabHit} />
-            <BeatRow soundID="6" handleGrabHit={handleGrabHit} />
+            <BeatRow soundID="1" handleGrabHit={handleGrabHit} currentCol={currentCol} />
+            <BeatRow soundID="2" handleGrabHit={handleGrabHit} currentCol={currentCol} />
+            <BeatRow soundID="3" handleGrabHit={handleGrabHit} currentCol={currentCol} />
+            <BeatRow soundID="4" handleGrabHit={handleGrabHit} currentCol={currentCol} />
+            <BeatRow soundID="5" handleGrabHit={handleGrabHit} currentCol={currentCol} />
+            <BeatRow soundID="6" handleGrabHit={handleGrabHit} currentCol={currentCol} />
           </div>
         </div>
       </div>
