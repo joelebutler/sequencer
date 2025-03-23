@@ -4,7 +4,7 @@ import { Knob, Pointer, Scale } from 'rc-knob'
 import React, { useState, useCallback, useEffect } from 'react'
 import { debounce } from 'lodash'
 
-const GainKnob = React.memo(({ setRecentVolume, recentVolume, recentInst }) => {
+const GainKnob = React.memo(({ setRecentVolume, recentVolume, recentInst, onChange }) => {
   const [value, setValue] = useState(0) // Default volume value
   const [recentInstLocal, setRecentInstLocal] = useState('')
 
@@ -20,7 +20,7 @@ const GainKnob = React.memo(({ setRecentVolume, recentVolume, recentInst }) => {
     debounce((newValue) => {
       console.log('Volume changed:', newValue)
     }, 300),
-    []
+    [onChange]
   )
 
   const handleChange = useCallback(

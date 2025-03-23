@@ -2,8 +2,9 @@
 /* eslint-disable react/display-name */
 import { Knob, Pointer, Scale } from 'rc-knob'
 import React, { useState, useCallback, useEffect } from 'react'
+import { debounce } from 'lodash'
 
-const AdjustmentKnob = React.memo(({ setRecentAdjustment, recentAdjustment, recentInst }) => {
+const AdjustmentKnob = React.memo(({ setRecentAdjustment, recentAdjustment, recentInst, onChange }) => {
   const [value, setValue] = useState(0) // Default adjustment value
   const [recentInstLocal, setRecentInstLocal] = useState('')
 
@@ -15,13 +16,20 @@ const AdjustmentKnob = React.memo(({ setRecentAdjustment, recentAdjustment, rece
     }
   }, [recentInst, recentAdjustment, recentInstLocal])
 
+  const debouncedOnChange = useCallback(
+    debounce((newValue) => {
+      console.log('Volume changed:', newValue)
+    }, 300),
+    [onChange]
+  )
+
   const handleChange = useCallback(
     (newValue) => {
       const roundedValue = Math.round(newValue)
       setValue(roundedValue) // Update the local state
       setRecentAdjustment(roundedValue) // Update the parent state
     },
-    [setRecentAdjustment]
+    [debouncedOnChange, setRecentAdjustment]
   )
 
   return (

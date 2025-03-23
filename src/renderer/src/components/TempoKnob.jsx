@@ -6,10 +6,6 @@ import { debounce } from 'lodash'
 const TempoKnob = React.memo(({ onChange }) => {
   const [value, setValue] = useState(120) // Default tempo value
 
-  useEffect(() => {
-    onChange(value)
-  }, [value, onChange])
-
   const debouncedOnChange = useCallback(
     debounce((newValue) => {
       onChange(newValue)
