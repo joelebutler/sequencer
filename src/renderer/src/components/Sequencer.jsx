@@ -24,6 +24,7 @@ export function Sequencer() {
   const [recordedAudio, setRecordedAudio] = useState(null)
   const [paused, setPaused] = useState(false)
   const [stopped, setStopped] = useState(false)
+  const [blob, setBlob] = useState(new Blob())
 
   const storeOneShot = useRef({})
 
@@ -56,6 +57,7 @@ export function Sequencer() {
 
   const handleRecordingComplete = (audioBlob) => {
     const audioUrl = URL.createObjectURL(audioBlob)
+    setBlob(audioBlob)
     const audio = new Audio(audioUrl)
     setRecordedAudio(audio)
   }
@@ -110,7 +112,7 @@ export function Sequencer() {
           <div className="bg-red-500 w-[300px] h-[200px]">
             <div className="bg-blue-800 w-full h-3/4">
               <label>Waveform</label>
-              <Visualizer />
+              <Visualizer blob={blob} />
             </div>
             {/* Audio Controller */}
             <div className="flex flex-row justify-between">
@@ -122,13 +124,9 @@ export function Sequencer() {
               </div>
               <button
                 className="waveform-control record-btn"
-                onClick={
-                  recorderControls.isRecording
-                    ? handleStopRecording
-                    : handleStartRecording
-                }
+                onClick={recorderControls.isRecording ? handleStopRecording : handleStartRecording}
               >
-                {recorderControls.isRecording ? <FaSquare/> : <FaCircle/>}
+                {recorderControls.isRecording ? <FaSquare /> : <FaCircle />}
               </button>
               <button className="waveform-control pause-btn">
                 <FaCirclePause />

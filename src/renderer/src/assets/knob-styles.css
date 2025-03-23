@@ -3,5 +3,10 @@
 @tailwind utilities;
 
 .gainKnob circle {
-  @apply fill-green-500;
+}
+.generalKnob circle {
+  @apply fill-slate-800;
+}
+.generalPointer {
+  @apply fill-slate-50;
 }

@@ -1,26 +1,30 @@
-import { useState, useRef } from 'react'
+import { useEffect } from 'react'
 import { AudioVisualizer } from 'react-audio-visualize'
 
-function Visualizer() {
-  const [blob, setBlob] = useState(null)
-  const visualizerRef = useRef(null)
+const Visualizer = ({ blob }) => {
+  // Initialize the recorder controls using the hook
 
-  // set blob somewhere in code
+  // Get the recorded audio blob
+  useEffect(() => {
+    if (!blob) return
+
+    console.log(new Blob())
+    console.log(blob)
+  }, [blob])
 
   return (
-    <div>
-      {blob && (
-        <AudioVisualizer
-          ref={visualizerRef}
-          blob={blob}
-          width={500}
-          height={75}
-          barWidth={1}
-          gap={0}
-          barColor={'#f76565'}
-        />
-      )}
-    </div>
+    <>
+      <audio src={blob} />
+
+      <AudioVisualizer
+        blob={blob.size > 0 ? blob : null}
+        width={300}
+        height={75}
+        barWidth={1}
+        gap={0}
+        barColor={'#f76565'}
+      />
+    </>
   )
 }
 
