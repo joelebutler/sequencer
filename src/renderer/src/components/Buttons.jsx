@@ -7,6 +7,7 @@ import snare from '../assets/sounds/snare.wav'
 
 function Button({ soundID, defaultSound }) {
   const [enabled, toggleEnabled] = useState(false)
+  const [recent, setRecent] = useState(false)
   let sound = null
   if (defaultSound === 'cowbell') {
     sound = new Audio(cowbell)
@@ -31,11 +32,20 @@ function Button({ soundID, defaultSound }) {
   const handleClick = () => {
     toggleEnabled(!enabled)
     playOneShot()
+    const buttons = document.querySelectorAll('.inst-button')
+
+    buttons.forEach((button) => {
+      button.classList.remove('recent-inst')
+    })
+
+    setRecent(true)
   }
+
+  useEffect(() => {}, [])
 
   return (
     <button
-      className={`inst-button ${enabled ? 'active-inst' : ''}`}
+      className={`inst-button ${enabled ? 'active-inst' : ''} ${recent ? 'recent-inst' : ''}`}
       onClick={handleClick}
       id={'sound-' + soundID}
     >

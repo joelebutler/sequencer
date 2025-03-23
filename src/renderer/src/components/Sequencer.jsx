@@ -26,7 +26,13 @@ export function Sequencer() {
         <h2>A sequencer by Joel Butler & Michael Vitale</h2>
       </div>
       <div id="controls" className="flex flex-row h-[25vh]">
-        <div id="active-controls" className="flex-grow flex flex-row justify-around items-center">
+        <div
+          id="active-controls"
+          className="flex-grow flex flex-row justify-around items-center relative"
+        >
+          <label className="absolute left-[10px] top-[10px]">
+            Recent:<span id="recent-inst-label"></span>
+          </label>
           <GainKnob />
           <PitchKnob />
           <TimingKnob />
