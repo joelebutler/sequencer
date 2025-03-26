@@ -1,12 +1,14 @@
-# my-app
+# sequencer
 
-An Electron application with React
+An Electron drum sequencer application with React
 
 ## Recommended IDE Setup
 
 - [VSCode](https://code.visualstudio.com/) + [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) + [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 
-## Project Setup
+## See a brief demo
+
+- Youtube Link [Here!](https://youtu.be/AGLLpiZLE7w)
 
 ### Install
 

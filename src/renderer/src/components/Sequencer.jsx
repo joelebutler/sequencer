@@ -86,7 +86,7 @@ export function Sequencer() {
         stopped={stopped}
       />
       <div className="flex flex-row justify-between p-[20px] border-slate-900 border-b-[3px] mb-[10px]">
-        <h2>Michaeland TR-909</h2>
+        <h2>Michaeland SEQ-01</h2>
         <h2>A sequencer by Joel Butler & Michael Vitale</h2>
       </div>
       <div
